@@ -17,4 +17,8 @@ class TableViewCell: UITableViewCell {
     @IBAction func deleteButtonClick(_ sender: Any) {
         cellDelegate?.deleteTask(at: index)
     }
+    
+    @IBAction func taskIsDoneButtonClick(_ sender: Any) {
+        cellDelegate?.taskIsDone(at: index)
+    }
 }

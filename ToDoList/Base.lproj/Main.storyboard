@@ -93,6 +93,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="checkmark.seal" catalog="system">
                                                         <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="taskIsDoneButtonClick:" destination="9Gy-5i-tjQ" eventType="touchUpInside" id="Lpv-Vt-4nh"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New task" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQR-6h-E9b">
                                                     <rect key="frame" x="20" y="4" width="269" height="34.333333333333336"/>

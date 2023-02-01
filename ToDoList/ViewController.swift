@@ -54,6 +54,9 @@ extension ViewController: UITableViewDataSource {
         cell.index = indexPath.row
         cell.nameTaskLabel.text = tasks[indexPath.row].0
         cell.cellDelegate = self
+        if tasks[indexPath.row].1 {
+            cell.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
+        }
         return cell
     }
 }
@@ -63,8 +66,14 @@ extension ViewController: CellDelegate {
         tasks.remove(at: index)
         tableView.reloadData()
     }
+    
+    func taskIsDone(at index: Int) {
+        tasks[index].1 = true
+        tableView.reloadData()
+    }
 }
 
 protocol CellDelegate {
     func deleteTask(at index: Int)
+    func taskIsDone(at index: Int)
 }
