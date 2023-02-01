@@ -37,6 +37,9 @@
                                             <imageReference key="image" image="plus.square.fill" catalog="system" symbolScale="large"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addNewTaskButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MaC-Ma-RBe"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b90-MH-0i8">
                                         <rect key="frame" x="286" y="67" width="50" height="64"/>
