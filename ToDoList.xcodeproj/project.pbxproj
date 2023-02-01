@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052225D4298ACD4E009F04B7 /* TableViewCell.swift */; };
 		058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */; };
 		058DB4B12989B01700EDCAB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */; };
 		058DB4B32989B01700EDCAB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4B22989B01700EDCAB5 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		052225D4298ACD4E009F04B7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		058DB4AB2989B01700EDCAB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */,
 				058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */,
 				058DB4B22989B01700EDCAB5 /* ViewController.swift */,
+				052225D4298ACD4E009F04B7 /* TableViewCell.swift */,
 				058DB4B42989B01700EDCAB5 /* Main.storyboard */,
 				058DB4B72989B01800EDCAB5 /* Assets.xcassets */,
 				058DB4B92989B01800EDCAB5 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058DB4B32989B01700EDCAB5 /* ViewController.swift in Sources */,
+				052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */,
 				058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */,
 				058DB4B12989B01700EDCAB5 /* SceneDelegate.swift in Sources */,
 			);
