@@ -113,6 +113,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="delete.left" catalog="system">
                                                         <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteButtonClick:" destination="9Gy-5i-tjQ" eventType="touchUpInside" id="cln-gP-HEl"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

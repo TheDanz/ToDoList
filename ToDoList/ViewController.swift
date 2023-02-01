@@ -1,9 +1,9 @@
 import UIKit
 
+var tasks: [(String, Bool)] = []
+
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    var tasks: [(String, Bool)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
                 return
             }
             
-            self.tasks.append((taskName, false))
+            tasks.append((taskName, false))
             self.tableView.reloadData()
         }
         
@@ -51,7 +51,20 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as? TableViewCell else {
             return UITableViewCell()
         }
+        cell.index = indexPath.row
         cell.nameTaskLabel.text = tasks[indexPath.row].0
+        cell.cellDelegate = self
         return cell
     }
+}
+
+extension ViewController: CellDelegate {
+    func deleteTask(at index: Int) {
+        tasks.remove(at: index)
+        tableView.reloadData()
+    }
+}
+
+protocol CellDelegate {
+    func deleteTask(at index: Int)
 }
