@@ -2,7 +2,14 @@ import UIKit
 
 var tasks: [(String, Bool)] = []
 
+func moveTask(from: Int, to: Int) {
+    let taskFrom = tasks[from]
+    tasks.remove(at: from)
+    tasks.insert(taskFrom, at: to)
+}
+
 class ViewController: UIViewController {
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -35,11 +42,28 @@ class ViewController: UIViewController {
 
         present(alert, animated: true)
     }
+    
+    @IBAction func editButtonClick(_ sender: Any) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        let editON = UIImage(systemName: "pencil.slash")
+        let editOFF = UIImage(systemName: "pencil")
+        editButton.setImage(tableView.isEditing ? editON : editOFF, for: .normal)
+    }
 }
 
 
 extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        moveTask(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        tableView.reloadData()
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {
