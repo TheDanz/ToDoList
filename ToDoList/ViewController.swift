@@ -63,7 +63,7 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.count
+        return model.filteredTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,12 +71,26 @@ extension ViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.index = indexPath.row
-        cell.nameTaskLabel.text = model.tasks[indexPath.row].name
+        cell.nameTaskLabel.text = model.filteredTasks[indexPath.row].name
         cell.cellDelegate = self
-        if model.tasks[indexPath.row].isDone {
+        if model.filteredTasks[indexPath.row].isDone {
             cell.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
         }
         return cell
+    }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        model.filteredTasks = []
+        
+        if searchText == "" {
+            model.filteredTasks = model.tasks
+        } else {
+            model.search(searchTextValue: searchText)
+        }
+        
+        tableView.reloadData()
     }
 }
 

@@ -1,3 +1,5 @@
+import Foundation
+
 class Task {
     var name: String
     var isDone: Bool
@@ -9,10 +11,12 @@ class Task {
 }
 
 class Model {
-    var tasks: [Task] = []
-    var count: Int {
-        return tasks.count
+    var tasks: [Task] = [] {
+        didSet {
+            filteredTasks = tasks
+        }
     }
+    var filteredTasks: [Task] = []
     
     func moveTask(from: Int, to: Int) {
         let taskFrom = tasks[from]
@@ -26,6 +30,12 @@ class Model {
     
     func deleteTask(at index: Int) {
         tasks.remove(at: index)
+    }
+    
+    func search(searchTextValue: String) {
+        filteredTasks = tasks.filter { task in
+            task.name.lowercased().contains(searchTextValue.lowercased())
+        }
     }
 }
 
