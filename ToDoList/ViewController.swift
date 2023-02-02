@@ -1,16 +1,10 @@
 import UIKit
 
-var tasks: [(String, Bool)] = []
-
-func moveTask(from: Int, to: Int) {
-    let taskFrom = tasks[from]
-    tasks.remove(at: from)
-    tasks.insert(taskFrom, at: to)
-}
-
 class ViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
+    let model = Model()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +27,8 @@ class ViewController: UIViewController {
                 return
             }
             
-            tasks.append((taskName, false))
+            let task = Task(name: taskName, isDone: false)
+            self.model.addTask(task)
             self.tableView.reloadData()
         }
         
@@ -54,13 +49,13 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        moveTask(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        model.moveTask(from: sourceIndexPath.row, to: destinationIndexPath.row)
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            tasks.remove(at: indexPath.row)
+            model.deleteTask(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
@@ -68,7 +63,7 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,9 +71,9 @@ extension ViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.index = indexPath.row
-        cell.nameTaskLabel.text = tasks[indexPath.row].0
+        cell.nameTaskLabel.text = model.tasks[indexPath.row].name
         cell.cellDelegate = self
-        if tasks[indexPath.row].1 {
+        if model.tasks[indexPath.row].isDone {
             cell.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
         }
         return cell
@@ -87,17 +82,12 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: CellDelegate {
     func deleteTask(at index: Int) {
-        tasks.remove(at: index)
+        model.deleteTask(at: index)
         tableView.reloadData()
     }
     
     func taskIsDone(at index: Int) {
-        tasks[index].1 = true
+        model.tasks[index].isDone = true
         tableView.reloadData()
     }
-}
-
-protocol CellDelegate {
-    func deleteTask(at index: Int)
-    func taskIsDone(at index: Int)
 }
