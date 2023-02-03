@@ -80,17 +80,16 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="9Gy-5i-tjQ" customClass="TableViewCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="42.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Gy-5i-tjQ" id="8G3-k6-25x">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="42.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xu-Jk-CoG">
-                                                    <rect key="frame" x="339" y="4" width="34" height="34.333333333333336"/>
+                                                    <rect key="frame" x="339" y="4" width="34" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="34" id="Ijk-f1-hRl"/>
-                                                        <constraint firstAttribute="height" constant="34" id="Vpl-kd-vYO"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="checkmark.seal" catalog="system">
@@ -101,18 +100,14 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New task" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQR-6h-E9b">
-                                                    <rect key="frame" x="20" y="4" width="269" height="34.333333333333336"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="JpZ-je-CXY"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                                    <rect key="frame" x="20" y="4" width="269" height="35"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHI-hw-xRS">
-                                                    <rect key="frame" x="297" y="4" width="34" height="34.333333333333336"/>
+                                                    <rect key="frame" x="297" y="4" width="34" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="gsB-EE-Hc5"/>
                                                         <constraint firstAttribute="width" constant="34" id="ly4-4X-VM4"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
