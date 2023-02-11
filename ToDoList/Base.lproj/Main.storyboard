@@ -92,7 +92,7 @@
                                                         <constraint firstAttribute="width" constant="34" id="Ijk-f1-hRl"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="checkmark.seal" catalog="system">
+                                                    <buttonConfiguration key="configuration" style="plain" image="checkmark.seal.fill" catalog="system">
                                                         <color key="baseForegroundColor" systemColor="systemGreenColor"/>
                                                     </buttonConfiguration>
                                                     <connections>
@@ -111,7 +111,7 @@
                                                         <constraint firstAttribute="width" constant="34" id="ly4-4X-VM4"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="delete.left" catalog="system">
+                                                    <buttonConfiguration key="configuration" style="plain" image="delete.left.fill" catalog="system">
                                                         <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                                     </buttonConfiguration>
                                                     <connections>
@@ -165,8 +165,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark.seal" catalog="system" width="128" height="124"/>
-        <image name="delete.left" catalog="system" width="128" height="102"/>
+        <image name="checkmark.seal.fill" catalog="system" width="128" height="124"/>
+        <image name="delete.left.fill" catalog="system" width="128" height="102"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="plus.square.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
