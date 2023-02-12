@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051F90AE299962E20080F574 /* ToDoListCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */; };
 		052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052225D4298ACD4E009F04B7 /* TableViewCell.swift */; };
 		052225DA298C1AA3009F04B7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052225D9298C1AA3009F04B7 /* Model.swift */; };
 		058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051F90AD299962E20080F574 /* ToDoListCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoListCoreData.xcdatamodel; sourceTree = "<group>"; };
 		052225D4298ACD4E009F04B7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		052225D9298C1AA3009F04B7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		058DB4AB2989B01700EDCAB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,9 +68,10 @@
 				052225D4298ACD4E009F04B7 /* TableViewCell.swift */,
 				052225D9298C1AA3009F04B7 /* Model.swift */,
 				058DB4B42989B01700EDCAB5 /* Main.storyboard */,
-				058DB4B72989B01800EDCAB5 /* Assets.xcassets */,
 				058DB4B92989B01800EDCAB5 /* LaunchScreen.storyboard */,
+				058DB4B72989B01800EDCAB5 /* Assets.xcassets */,
 				058DB4BC2989B01800EDCAB5 /* Info.plist */,
+				051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			files = (
 				052225DA298C1AA3009F04B7 /* Model.swift in Sources */,
 				058DB4B32989B01700EDCAB5 /* ViewController.swift in Sources */,
+				051F90AE299962E20080F574 /* ToDoListCoreData.xcdatamodeld in Sources */,
 				052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */,
 				058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */,
 				058DB4B12989B01700EDCAB5 /* SceneDelegate.swift in Sources */,
@@ -368,6 +372,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				051F90AD299962E20080F574 /* ToDoListCoreData.xcdatamodel */,
+			);
+			currentVersion = 051F90AD299962E20080F574 /* ToDoListCoreData.xcdatamodel */;
+			path = ToDoListCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 058DB4A32989B01600EDCAB5 /* Project object */;
 }
