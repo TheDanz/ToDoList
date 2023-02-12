@@ -1,12 +1,13 @@
+import UIKit
 import Foundation
 
 class Task {
     var name: String
-    var isDone: Bool
+    var index: Int?
+    var color: UIColor?
     
-    init(name: String, isDone: Bool) {
+    init(name: String) {
         self.name = name
-        self.isDone = isDone
     }
 }
 
@@ -28,8 +29,10 @@ class Model {
         tasks.append(task)
     }
     
-    func deleteTask(at index: Int) {
-        tasks.remove(at: index)
+    func deleteTask(task: Task) {
+        if let index = task.index {
+            tasks.remove(at: index)
+        }
     }
     
     func search(searchTextValue: String) {
@@ -40,6 +43,6 @@ class Model {
 }
 
 protocol CellDelegate {
-    func deleteTask(at index: Int)
-    func taskIsDone(at index: Int)
+    func deleteTask(task: Task)
+    func taskIsDone(task: Task)
 }

@@ -3,8 +3,8 @@ import UIKit
 class TableViewCell: UITableViewCell {
     @IBOutlet weak var nameTaskLabel: UILabel!
     
-    var index = 0
     var cellDelegate: CellDelegate?
+    var task: Task?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -15,10 +15,12 @@ class TableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteButtonClick(_ sender: Any) {
-        cellDelegate?.deleteTask(at: index)
+        guard let task = self.task else { return }
+        cellDelegate?.deleteTask(task: task)
     }
     
     @IBAction func taskIsDoneButtonClick(_ sender: Any) {
-        cellDelegate?.taskIsDone(at: index)
+        guard let task = self.task else { return }
+        cellDelegate?.taskIsDone(task: task)
     }
 }

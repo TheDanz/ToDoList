@@ -27,7 +27,7 @@ class ViewController: UIViewController {
                 return
             }
             
-            let task = Task(name: taskName, isDone: false)
+            let task = Task(name: taskName)
             self.model.addTask(task)
             self.tableView.reloadData()
         }
@@ -55,7 +55,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            model.deleteTask(at: indexPath.row)
+            model.deleteTask(task: model.tasks[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
@@ -70,12 +70,12 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as? TableViewCell else {
             return UITableViewCell()
         }
-        cell.index = indexPath.row
+        model.tasks[indexPath.row].index = indexPath.row
+        let task = model.tasks[indexPath.row]
         cell.nameTaskLabel.text = model.filteredTasks[indexPath.row].name
+        cell.backgroundColor = model.filteredTasks[indexPath.row].color
         cell.cellDelegate = self
-        if model.filteredTasks[indexPath.row].isDone {
-            cell.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
-        }
+        cell.task = task
         return cell
     }
 }
@@ -95,13 +95,13 @@ extension ViewController: UISearchBarDelegate {
 }
 
 extension ViewController: CellDelegate {
-    func deleteTask(at index: Int) {
-        model.deleteTask(at: index)
+    func deleteTask(task: Task) {
+        model.deleteTask(task: task)
         tableView.reloadData()
     }
     
-    func taskIsDone(at index: Int) {
-        model.tasks[index].isDone = true
+    func taskIsDone(task: Task) {
+        task.color = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
         tableView.reloadData()
     }
 }
