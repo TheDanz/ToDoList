@@ -10,6 +10,9 @@
 		051F90AE299962E20080F574 /* ToDoListCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */; };
 		052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052225D4298ACD4E009F04B7 /* TableViewCell.swift */; };
 		052225DA298C1AA3009F04B7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052225D9298C1AA3009F04B7 /* Model.swift */; };
+		053F522D299AAA0500ED033B /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F522B299AAA0500ED033B /* Task+CoreDataClass.swift */; };
+		053F522E299AAA0500ED033B /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F522C299AAA0500ED033B /* Task+CoreDataProperties.swift */; };
+		053F5230299AB00600ED033B /* DataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F522F299AB00600ED033B /* DataStorageManager.swift */; };
 		058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */; };
 		058DB4B12989B01700EDCAB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */; };
 		058DB4B32989B01700EDCAB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4B22989B01700EDCAB5 /* ViewController.swift */; };
@@ -22,6 +25,9 @@
 		051F90AD299962E20080F574 /* ToDoListCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoListCoreData.xcdatamodel; sourceTree = "<group>"; };
 		052225D4298ACD4E009F04B7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		052225D9298C1AA3009F04B7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		053F522B299AAA0500ED033B /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		053F522C299AAA0500ED033B /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		053F522F299AB00600ED033B /* DataStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageManager.swift; sourceTree = "<group>"; };
 		058DB4AB2989B01700EDCAB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 				058DB4B72989B01800EDCAB5 /* Assets.xcassets */,
 				058DB4BC2989B01800EDCAB5 /* Info.plist */,
 				051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */,
+				053F522B299AAA0500ED033B /* Task+CoreDataClass.swift */,
+				053F522C299AAA0500ED033B /* Task+CoreDataProperties.swift */,
+				053F522F299AB00600ED033B /* DataStorageManager.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -149,7 +158,10 @@
 			files = (
 				052225DA298C1AA3009F04B7 /* Model.swift in Sources */,
 				058DB4B32989B01700EDCAB5 /* ViewController.swift in Sources */,
+				053F522D299AAA0500ED033B /* Task+CoreDataClass.swift in Sources */,
 				051F90AE299962E20080F574 /* ToDoListCoreData.xcdatamodeld in Sources */,
+				053F5230299AB00600ED033B /* DataStorageManager.swift in Sources */,
+				053F522E299AAA0500ED033B /* Task+CoreDataProperties.swift in Sources */,
 				052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */,
 				058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */,
 				058DB4B12989B01700EDCAB5 /* SceneDelegate.swift in Sources */,

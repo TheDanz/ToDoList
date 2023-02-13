@@ -1,15 +1,15 @@
 import UIKit
 import Foundation
 
-class Task {
-    var name: String
-    var index: Int?
-    var color: UIColor?
-    
-    init(name: String) {
-        self.name = name
-    }
-}
+//class Task {
+//    var name: String
+//    var index: Int?
+//    var color: UIColor?
+//
+//    init(name: String) {
+//        self.name = name
+//    }
+//}
 
 class Model {
     var tasks: [Task] = [] {
