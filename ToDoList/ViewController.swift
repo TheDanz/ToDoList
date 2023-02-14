@@ -1,16 +1,26 @@
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let model = Model()
+    var dataStorageManager = DataStorageManager()
+    var fetchResultController: NSFetchedResultsController<Task>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
+        let sortDecriptor = NSSortDescriptor(key: "index", ascending: true)
+        fetchRequest.fetchLimit = 15
+        fetchRequest.sortDescriptors = [sortDecriptor]
+        fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataStorageManager.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultController.delegate = self
+        try! fetchResultController.performFetch()
     }
 
     @IBAction func addNewTaskButtonClick(_ sender: Any) {
@@ -27,8 +37,11 @@ class ViewController: UIViewController {
                 return
             }
             
-            let task = Task(name: taskName)
-            self.model.addTask(task)
+            let task = Task(context: self.dataStorageManager.viewContext)
+            task.name = taskName
+            
+            try! self.dataStorageManager.viewContext.save()
+            
             self.tableView.reloadData()
         }
         
@@ -46,62 +59,117 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        model.moveTask(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        
+        let count = fetchResultController.fetchedObjects?.count ?? 0
+        
+        var array: [Int] = []
+        for i in 0..<count {
+            array.append(i)
+        }
+        
+        let newElement = array.remove(at: sourceIndexPath.row)
+        array.insert(newElement, at: destinationIndexPath.row)
+        
+        for i in 0..<count {
+            let task = fetchResultController.object(at: IndexPath(row: i, section: 0))
+            
+            let newPosition = array.firstIndex(of: i)!
+            task.index = Int64(newPosition)
+        }
+        
+        try! dataStorageManager.viewContext.save()
         tableView.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCell.EditingStyle.delete {
-            model.deleteTask(task: model.tasks[indexPath.row])
-            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        
+        if editingStyle == .delete {
+            let task = fetchResultController.object(at: indexPath)
+            dataStorageManager.viewContext.delete(task)
+            try! dataStorageManager.viewContext.save()
         }
     }
 }
 
 extension ViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.filteredTasks.count
+        return fetchResultController.sections?[section].numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as? TableViewCell else {
             return UITableViewCell()
         }
-        model.tasks[indexPath.row].index = indexPath.row
-        let task = model.tasks[indexPath.row]
-        cell.nameTaskLabel.text = model.filteredTasks[indexPath.row].name
-        cell.backgroundColor = model.filteredTasks[indexPath.row].color
-        cell.cellDelegate = self
+        
+        let task = fetchResultController.object(at: indexPath)
+        task.index = Int64(indexPath.row)
+        try! dataStorageManager.viewContext.save()
+        
+        cell.nameTaskLabel.text = task.name
+        cell.backgroundColor = task.color
+        // cell.cellDelegate = self
         cell.task = task
         return cell
     }
 }
 
-extension ViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        model.filteredTasks = []
-        
-        if searchText == "" {
-            model.filteredTasks = model.tasks
-        } else {
-            model.search(searchTextValue: searchText)
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension ViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let indexPath = indexPath {
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath,
+               let newIndexPath = newIndexPath {
+                tableView.moveRow(at: indexPath, to: newIndexPath)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        default:
+            break
         }
-        
-        tableView.reloadData()
     }
 }
 
-extension ViewController: CellDelegate {
-    func deleteTask(task: Task) {
-        model.deleteTask(task: task)
-        tableView.reloadData()
-    }
-    
-    func taskIsDone(task: Task) {
-        task.color = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
-        tableView.reloadData()
-    }
-}
+// MARK: - SearchBar Maethods
+
+//extension ViewController: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        model.filteredTasks = []
+//        
+//        if searchText == "" {
+//            model.filteredTasks = model.tasks
+//        } else {
+//            model.search(searchTextValue: searchText)
+//        }
+//        
+//        tableView.reloadData()
+//    }
+//}
+
+// MARK: - Delegates
+
+//extension ViewController: CellDelegate {
+//    func deleteTask(task: Task) {
+//        model.deleteTask(task: task)
+//        tableView.reloadData()
+//    }
+//
+//    func taskIsDone(task: Task) {
+//        task.color = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
+//        tableView.reloadData()
+//    }
+//}
