@@ -68,15 +68,8 @@
                                     <constraint firstAttribute="trailing" secondItem="Xvi-T9-o0J" secondAttribute="trailing" constant="8" id="xsq-6g-TqG"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="D33-b9-sqJ">
-                                <rect key="frame" x="0.0" y="139" width="393" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="n4g-lT-xUx"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uiY-N9-e62">
-                                <rect key="frame" x="0.0" y="195" width="393" height="657"/>
+                                <rect key="frame" x="0.0" y="147" width="393" height="705"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="9Gy-5i-tjQ" customClass="TableViewCell" customModule="ToDoList" customModuleProvider="target">
@@ -143,15 +136,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YIN-pY-hLr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="84I-aG-ZVO"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="top" secondItem="YIN-pY-hLr" secondAttribute="bottom" constant="8" symbolic="YES" id="FLF-c7-ZEN"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P6y-HM-Rvq"/>
+                            <constraint firstAttribute="bottom" secondItem="uiY-N9-e62" secondAttribute="bottom" id="SPt-WZ-9VX"/>
                             <constraint firstItem="uiY-N9-e62" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TIB-wT-cGW"/>
                             <constraint firstItem="YIN-pY-hLr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="TlI-H5-H4Y"/>
-                            <constraint firstItem="uiY-N9-e62" firstAttribute="top" secondItem="D33-b9-sqJ" secondAttribute="bottom" id="b2I-ZZ-5lU"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cOi-2U-aji"/>
                             <constraint firstItem="YIN-pY-hLr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fDd-Va-xN0"/>
-                            <constraint firstItem="D33-b9-sqJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="j8o-Eo-Ddh"/>
-                            <constraint firstItem="D33-b9-sqJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lXJ-3i-JCa"/>
                             <constraint firstItem="uiY-N9-e62" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="muY-We-Fv1"/>
                             <constraint firstAttribute="bottom" secondItem="uiY-N9-e62" secondAttribute="bottom" id="xcc-z4-tI2"/>
-                            <constraint firstItem="D33-b9-sqJ" firstAttribute="top" secondItem="YIN-pY-hLr" secondAttribute="bottom" id="yru-uG-BBD"/>
                         </constraints>
                     </view>
                     <connections>

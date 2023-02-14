@@ -144,22 +144,6 @@ extension ViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-// MARK: - SearchBar Maethods
-
-//extension ViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        model.filteredTasks = []
-//        
-//        if searchText == "" {
-//            model.filteredTasks = model.tasks
-//        } else {
-//            model.search(searchTextValue: searchText)
-//        }
-//        
-//        tableView.reloadData()
-//    }
-//}
-
 // MARK: - CellDelegate
 
 extension ViewController: CellDelegate {
@@ -178,4 +162,9 @@ extension ViewController: CellDelegate {
         task.color = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
         tableView.reloadData()
     }
+}
+
+protocol CellDelegate {
+    func deleteTask(task: Task)
+    func taskIsDone(task: Task)
 }
