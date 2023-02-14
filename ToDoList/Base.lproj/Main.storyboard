@@ -1,24 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YIN-pY-hLr">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="139"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Do List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSg-BD-ViN">
+                                        <rect key="frame" x="8" y="63" width="234.66666666666666" height="68"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="50"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvi-T9-o0J">
+                                        <rect key="frame" x="336" y="67" width="49" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="dEq-hF-Q1k"/>
+                                            <constraint firstAttribute="height" constant="64" id="jay-RO-lT3"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="plus.square.fill" catalog="system" symbolScale="large"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addNewTaskButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MaC-Ma-RBe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b90-MH-0i8">
+                                        <rect key="frame" x="290" y="67" width="46" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="CHc-ak-dIy"/>
+                                            <constraint firstAttribute="height" constant="64" id="fBA-wx-xFP"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="editButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0gh-Go-ryb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Xvi-T9-o0J" secondAttribute="bottom" constant="8" id="65X-fg-e6X"/>
+                                    <constraint firstAttribute="height" constant="139" id="Bj0-qQ-fd0"/>
+                                    <constraint firstAttribute="bottom" secondItem="wSg-BD-ViN" secondAttribute="bottom" constant="8" id="grI-eD-8Mk"/>
+                                    <constraint firstItem="wSg-BD-ViN" firstAttribute="leading" secondItem="YIN-pY-hLr" secondAttribute="leading" constant="8" id="huM-W6-G3B"/>
+                                    <constraint firstItem="Xvi-T9-o0J" firstAttribute="leading" secondItem="b90-MH-0i8" secondAttribute="trailing" id="l6T-ul-6qN"/>
+                                    <constraint firstAttribute="bottom" secondItem="b90-MH-0i8" secondAttribute="bottom" constant="8" id="r3H-aX-QdM"/>
+                                    <constraint firstItem="b90-MH-0i8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wSg-BD-ViN" secondAttribute="trailing" constant="8" symbolic="YES" id="w9u-xx-0cj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xvi-T9-o0J" secondAttribute="trailing" constant="8" id="xsq-6g-TqG"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uiY-N9-e62">
+                                <rect key="frame" x="0.0" y="147" width="393" height="705"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="9Gy-5i-tjQ" customClass="TableViewCell" customModule="ToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Gy-5i-tjQ" id="8G3-k6-25x">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Xu-Jk-CoG">
+                                                    <rect key="frame" x="339" y="4" width="34" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="34" id="Ijk-f1-hRl"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="checkmark.seal.fill" catalog="system">
+                                                        <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="taskIsDoneButtonClick:" destination="9Gy-5i-tjQ" eventType="touchUpInside" id="Lpv-Vt-4nh"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New task" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQR-6h-E9b">
+                                                    <rect key="frame" x="20" y="4" width="269" height="35"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHI-hw-xRS">
+                                                    <rect key="frame" x="297" y="4" width="34" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="34" id="ly4-4X-VM4"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="delete.left.fill" catalog="system">
+                                                        <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteButtonClick:" destination="9Gy-5i-tjQ" eventType="touchUpInside" id="cln-gP-HEl"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rQR-6h-E9b" firstAttribute="top" secondItem="8G3-k6-25x" secondAttribute="top" constant="4" id="A4L-Rg-dSu"/>
+                                                <constraint firstItem="rQR-6h-E9b" firstAttribute="leading" secondItem="8G3-k6-25x" secondAttribute="leading" constant="20" id="Lpm-08-zko"/>
+                                                <constraint firstItem="7Xu-Jk-CoG" firstAttribute="leading" secondItem="AHI-hw-xRS" secondAttribute="trailing" constant="8" symbolic="YES" id="aGC-6R-b3H"/>
+                                                <constraint firstAttribute="bottom" secondItem="7Xu-Jk-CoG" secondAttribute="bottom" constant="4" id="aee-2r-2d5"/>
+                                                <constraint firstAttribute="bottom" secondItem="rQR-6h-E9b" secondAttribute="bottom" constant="4" id="feE-YT-z7W"/>
+                                                <constraint firstAttribute="bottom" secondItem="AHI-hw-xRS" secondAttribute="bottom" constant="4" id="iAx-MM-6T6"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Xu-Jk-CoG" secondAttribute="trailing" constant="20" id="jLj-7C-pel"/>
+                                                <constraint firstItem="7Xu-Jk-CoG" firstAttribute="top" secondItem="8G3-k6-25x" secondAttribute="top" constant="4" id="jZr-aw-oxR"/>
+                                                <constraint firstItem="AHI-hw-xRS" firstAttribute="leading" secondItem="rQR-6h-E9b" secondAttribute="trailing" constant="8" symbolic="YES" id="r2H-at-lPI"/>
+                                                <constraint firstItem="AHI-hw-xRS" firstAttribute="top" secondItem="8G3-k6-25x" secondAttribute="top" constant="4" id="wAr-Ma-9hY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameTaskLabel" destination="rQR-6h-E9b" id="7Qn-Ct-FKs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YIN-pY-hLr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="84I-aG-ZVO"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="top" secondItem="YIN-pY-hLr" secondAttribute="bottom" constant="8" symbolic="YES" id="FLF-c7-ZEN"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P6y-HM-Rvq"/>
+                            <constraint firstAttribute="bottom" secondItem="uiY-N9-e62" secondAttribute="bottom" id="SPt-WZ-9VX"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TIB-wT-cGW"/>
+                            <constraint firstItem="YIN-pY-hLr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="TlI-H5-H4Y"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cOi-2U-aji"/>
+                            <constraint firstItem="YIN-pY-hLr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fDd-Va-xN0"/>
+                            <constraint firstItem="uiY-N9-e62" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="muY-We-Fv1"/>
+                            <constraint firstAttribute="bottom" secondItem="uiY-N9-e62" secondAttribute="bottom" id="xcc-z4-tI2"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="editButton" destination="b90-MH-0i8" id="jf0-y4-95o"/>
+                        <outlet property="tableView" destination="uiY-N9-e62" id="BiH-9P-r9V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="127.48091603053435" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkmark.seal.fill" catalog="system" width="128" height="124"/>
+        <image name="delete.left.fill" catalog="system" width="128" height="102"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="plus.square.fill" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

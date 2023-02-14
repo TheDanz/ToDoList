@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051F90AE299962E20080F574 /* ToDoListCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */; };
+		052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052225D4298ACD4E009F04B7 /* TableViewCell.swift */; };
+		053F5230299AB00600ED033B /* DataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F522F299AB00600ED033B /* DataStorageManager.swift */; };
+		05862459299C065800B1EB16 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05862457299C065800B1EB16 /* Task+CoreDataClass.swift */; };
+		0586245A299C065800B1EB16 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05862458299C065800B1EB16 /* Task+CoreDataProperties.swift */; };
 		058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */; };
 		058DB4B12989B01700EDCAB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */; };
 		058DB4B32989B01700EDCAB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DB4B22989B01700EDCAB5 /* ViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051F90AD299962E20080F574 /* ToDoListCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoListCoreData.xcdatamodel; sourceTree = "<group>"; };
+		052225D4298ACD4E009F04B7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		053F522F299AB00600ED033B /* DataStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageManager.swift; sourceTree = "<group>"; };
+		05862457299C065800B1EB16 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		05862458299C065800B1EB16 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		058DB4AB2989B01700EDCAB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,10 +69,15 @@
 				058DB4AE2989B01700EDCAB5 /* AppDelegate.swift */,
 				058DB4B02989B01700EDCAB5 /* SceneDelegate.swift */,
 				058DB4B22989B01700EDCAB5 /* ViewController.swift */,
+				052225D4298ACD4E009F04B7 /* TableViewCell.swift */,
 				058DB4B42989B01700EDCAB5 /* Main.storyboard */,
-				058DB4B72989B01800EDCAB5 /* Assets.xcassets */,
 				058DB4B92989B01800EDCAB5 /* LaunchScreen.storyboard */,
+				058DB4B72989B01800EDCAB5 /* Assets.xcassets */,
 				058DB4BC2989B01800EDCAB5 /* Info.plist */,
+				051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */,
+				053F522F299AB00600ED033B /* DataStorageManager.swift */,
+				05862457299C065800B1EB16 /* Task+CoreDataClass.swift */,
+				05862458299C065800B1EB16 /* Task+CoreDataProperties.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -139,6 +154,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				058DB4B32989B01700EDCAB5 /* ViewController.swift in Sources */,
+				05862459299C065800B1EB16 /* Task+CoreDataClass.swift in Sources */,
+				051F90AE299962E20080F574 /* ToDoListCoreData.xcdatamodeld in Sources */,
+				0586245A299C065800B1EB16 /* Task+CoreDataProperties.swift in Sources */,
+				053F5230299AB00600ED033B /* DataStorageManager.swift in Sources */,
+				052225D5298ACD4E009F04B7 /* TableViewCell.swift in Sources */,
 				058DB4AF2989B01700EDCAB5 /* AppDelegate.swift in Sources */,
 				058DB4B12989B01700EDCAB5 /* SceneDelegate.swift in Sources */,
 			);
@@ -217,6 +237,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,6 +292,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -295,6 +317,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,6 +346,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,6 +382,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		051F90AC299962E20080F574 /* ToDoListCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				051F90AD299962E20080F574 /* ToDoListCoreData.xcdatamodel */,
+			);
+			currentVersion = 051F90AD299962E20080F574 /* ToDoListCoreData.xcdatamodel */;
+			path = ToDoListCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 058DB4A32989B01600EDCAB5 /* Project object */;
 }
