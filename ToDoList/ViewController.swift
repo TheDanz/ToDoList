@@ -113,7 +113,7 @@ extension ViewController: UITableViewDataSource {
         
         cell.nameTaskLabel.text = task.name
         cell.backgroundColor = task.color
-        // cell.cellDelegate = self
+        cell.cellDelegate = self
         cell.task = task
         return cell
     }
@@ -160,16 +160,22 @@ extension ViewController: NSFetchedResultsControllerDelegate {
 //    }
 //}
 
-// MARK: - Delegates
+// MARK: - CellDelegate
 
-//extension ViewController: CellDelegate {
-//    func deleteTask(task: Task) {
-//        model.deleteTask(task: task)
-//        tableView.reloadData()
-//    }
-//
-//    func taskIsDone(task: Task) {
-//        task.color = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
-//        tableView.reloadData()
-//    }
-//}
+extension ViewController: CellDelegate {
+    
+    func deleteTask(task: Task) {
+        
+        let taskToDelete = fetchResultController.object(at: IndexPath(row: Int(task.index), section: 0))
+        dataStorageManager.viewContext.delete(taskToDelete)
+        try! dataStorageManager.viewContext.save()
+        tableView.reloadData()
+    }
+
+    func taskIsDone(task: Task) {
+        
+        let task = fetchResultController.object(at: IndexPath(row: Int(task.index), section: 0))
+        task.color = #colorLiteral(red: 0.4666666667, green: 0.7607843137, blue: 0.7019607843, alpha: 1)
+        tableView.reloadData()
+    }
+}

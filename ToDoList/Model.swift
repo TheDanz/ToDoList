@@ -41,8 +41,8 @@ import Foundation
 //        }
 //    }
 //}
-//
-//protocol CellDelegate {
-//    func deleteTask(task: Task)
-//    func taskIsDone(task: Task)
-//}
+
+protocol CellDelegate {
+    func deleteTask(task: Task)
+    func taskIsDone(task: Task)
+}
