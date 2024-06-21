@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		058C240D2C25DB5900E31028 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C240C2C25DB5900E31028 /* FileCache.swift */; };
+		058C24112C26127600E31028 /* csvFileWithHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24102C26127600E31028 /* csvFileWithHeaders.csv */; };
+		058C24152C26151600E31028 /* csvFileWithoutHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */; };
 		05C66DAA2C25B02800033CB5 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DA92C25B02800033CB5 /* ToDoListApp.swift */; };
 		05C66DAC2C25B02800033CB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DAB2C25B02800033CB5 /* ContentView.swift */; };
 		05C66DAE2C25B02900033CB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C66DAD2C25B02900033CB5 /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		058C240C2C25DB5900E31028 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
+		058C24102C26127600E31028 /* csvFileWithHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithHeaders.csv; sourceTree = "<group>"; };
+		058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithoutHeaders.csv; sourceTree = "<group>"; };
 		05C66DA62C25B02800033CB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C66DA92C25B02800033CB5 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		05C66DAB2C25B02800033CB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				05C66DBA2C25B02900033CB5 /* ToDoListTests.swift */,
+				058C24102C26127600E31028 /* csvFileWithHeaders.csv */,
+				058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */,
 			);
 			path = ToDoListTests;
 			sourceTree = "<group>";
@@ -246,6 +252,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058C24112C26127600E31028 /* csvFileWithHeaders.csv in Resources */,
+				058C24152C26151600E31028 /* csvFileWithoutHeaders.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
