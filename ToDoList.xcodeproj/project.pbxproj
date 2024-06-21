@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058C240D2C25DB5900E31028 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C240C2C25DB5900E31028 /* FileCache.swift */; };
 		05C66DAA2C25B02800033CB5 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DA92C25B02800033CB5 /* ToDoListApp.swift */; };
 		05C66DAC2C25B02800033CB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DAB2C25B02800033CB5 /* ContentView.swift */; };
 		05C66DAE2C25B02900033CB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C66DAD2C25B02900033CB5 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		058C240C2C25DB5900E31028 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		05C66DA62C25B02800033CB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C66DA92C25B02800033CB5 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		05C66DAB2C25B02800033CB5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				05C66DA92C25B02800033CB5 /* ToDoListApp.swift */,
 				05C66DAB2C25B02800033CB5 /* ContentView.swift */,
 				05C66DD32C25B1CE00033CB5 /* ToDoItem.swift */,
+				058C240C2C25DB5900E31028 /* FileCache.swift */,
 				05C66DAD2C25B02900033CB5 /* Assets.xcassets */,
 				05C66DAF2C25B02900033CB5 /* Preview Content */,
 			);
@@ -262,6 +265,7 @@
 			files = (
 				05C66DAC2C25B02800033CB5 /* ContentView.swift in Sources */,
 				05C66DAA2C25B02800033CB5 /* ToDoListApp.swift in Sources */,
+				058C240D2C25DB5900E31028 /* FileCache.swift in Sources */,
 				05C66DD42C25B1CE00033CB5 /* ToDoItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
