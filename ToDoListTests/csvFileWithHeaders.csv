@@ -1,0 +1,5 @@
+id;text;importance;deadline;isDone
+123;"Помыть посуду";"unimportant";2024-06-20T05:48:05Z;false
+345;"Погулять;с собакой";"normal";2024-06-20T05:48:05Z;true
+987;"Сходить на пары";"unIMPORTANT";2024-06-20T05:48:05Z;true
+124;"Сдать сессию";"normal";2024-06-20T05:48:05Z;true
