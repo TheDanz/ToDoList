@@ -14,6 +14,7 @@
 		05C66DBB2C25B02900033CB5 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DBA2C25B02900033CB5 /* ToDoListTests.swift */; };
 		05C66DC52C25B02900033CB5 /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DC42C25B02900033CB5 /* ToDoListUITests.swift */; };
 		05C66DC72C25B02900033CB5 /* ToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DC62C25B02900033CB5 /* ToDoListUITestsLaunchTests.swift */; };
+		05C66DD42C25B1CE00033CB5 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C66DD32C25B1CE00033CB5 /* ToDoItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		05C66DC02C25B02900033CB5 /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C66DC42C25B02900033CB5 /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		05C66DC62C25B02900033CB5 /* ToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		05C66DD32C25B1CE00033CB5 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				05C66DA92C25B02800033CB5 /* ToDoListApp.swift */,
 				05C66DAB2C25B02800033CB5 /* ContentView.swift */,
+				05C66DD32C25B1CE00033CB5 /* ToDoItem.swift */,
 				05C66DAD2C25B02900033CB5 /* Assets.xcassets */,
 				05C66DAF2C25B02900033CB5 /* Preview Content */,
 			);
@@ -259,6 +262,7 @@
 			files = (
 				05C66DAC2C25B02800033CB5 /* ContentView.swift in Sources */,
 				05C66DAA2C25B02800033CB5 /* ToDoListApp.swift in Sources */,
+				05C66DD42C25B1CE00033CB5 /* ToDoItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
