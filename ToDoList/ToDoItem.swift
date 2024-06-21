@@ -82,3 +82,65 @@ extension ToDoItem {
         return toDoItem
     }
 }
+
+
+// MARK: ToDoItem - CSV
+extension ToDoItem {
+    
+    init?(csvLine: String, separator: Character) {
+        
+        var cells: [String] = []
+        var currentCell = ""
+        var insideQuotes = false
+        
+        for char in csvLine {
+            if char == "\"" {
+                insideQuotes.toggle()
+            } else if char == separator && !insideQuotes {
+                cells.append(currentCell)
+                currentCell = ""
+            } else {
+                currentCell.append(char)
+            }
+        }
+        cells.append(currentCell)
+                
+        guard let importance = Importance(rawValue: cells[2].lowercased()),
+              let isDone = Bool(cells[4])
+        else { return nil }
+        
+        let formatter = ISO8601DateFormatter()
+        let currentDate = Date()
+        
+        self.id = cells[0]
+        self.text = cells[1]
+        self.importance = importance
+        self.deadline = formatter.date(from: cells[3])
+        self.isDone = isDone
+        self.creationDate = currentDate
+        self.modificationDate = currentDate
+    }
+    
+    static func parseCSV(fileURL: URL, isHeaders: Bool) -> [ToDoItem] {
+        do {
+            let csvData = try String(contentsOf: fileURL)
+            var lines = csvData.components(separatedBy: .newlines)
+            
+            if isHeaders {
+                lines.removeFirst()
+            }
+            
+            var parsedToDoItems: [ToDoItem] = []
+            for line in lines {
+                if let toDoItem = ToDoItem(csvLine: line, separator: ";") {
+                    parsedToDoItems.append(toDoItem)
+                }
+            }
+            
+            return parsedToDoItems
+        } catch {
+            print("Error reading CSV file: \(error.localizedDescription)")
+            return []
+        }
+    }
+}
