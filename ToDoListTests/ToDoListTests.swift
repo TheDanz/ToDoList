@@ -15,17 +15,10 @@ final class ToDoListTests: XCTestCase {
     let jsonWithoutText: [String: Any] = ["importance": "unimportant", "isDone": true]
     let jsonWithoutIsDone: [String: Any] = ["id": "11", "text": "text11", "importance": "unimportant"]
     let jsonWithUpperAndLowerCaseImportance: [String: Any] = ["id": "12", "text": "text12", "importance": "uNiMpOrTaNt", "isDone": true]
-    let csvLineWithTextWithSeparator = "345;\"Погулять;с собакой\";\"normal\";2024-06-20T05:48:05Z;true"
-    let csvLineWithUpperAndLowerCaseImportance = "987;\"consider\";\"unIMPORTANT\";2024-06-20T05:48:05Z;true"
-    let csvLineWithIncorrectImportance = "124;\"someText\";\"sakjdj\";2024-06-20T05:48:05Z;true"
-    let csvLineWithIncorrectIsDone = "125;\"someText\";\"normal\";2024-06-20T05:48:05Z;truee"
-    let csvLineWithHeaders = """
-                                id;text;importance;deadline;isDone
-                                123;"Помыть посуду";"unimportant";2024-06-20T05:48:05Z;false
-                                345;"Погулять;с собакой";"normal";2024-06-20T05:48:05Z;true
-                                987;"Сходить на пары";"unIMPORTANT";2024-06-20T05:48:05Z;true
-                                124;"Сдать сессию";"normal";2024-06-20T05:48:05Z;true
-                            """
+    let csvLineWithTextWithSeparator = "345;'Погулять;с собакой';'normal';2024-06-20T05:48:05Z;true"
+    let csvLineWithUpperAndLowerCaseImportance = "987;'consider';'unIMPORTANT';2024-06-20T05:48:05Z;true"
+    let csvLineWithIncorrectImportance = "124;'someText';'sakjdj';2024-06-20T05:48:05Z;true"
+    let csvLineWithIncorrectIsDone = "125;'someText';'normal';2024-06-20T05:48:05Z;truee"
     
     func testIdIsCreatedAutomatically() {
         XCTAssertTrue(!todoItemWithoutId.id.isEmpty)
@@ -115,7 +108,7 @@ final class ToDoListTests: XCTestCase {
     }
     
     func testInitCsvIsSuccessfullWithSeparatorInTextCell() {
-        if let toDoItem = ToDoItem(csvLine: csvLineWithTextWithSeparator, separator: ";") {
+        if let toDoItem = ToDoItem.parse(csv: csvLineWithTextWithSeparator) {
             XCTAssertNotNil(toDoItem)
         } else {
             XCTFail("ToDoItem is nil")
@@ -124,7 +117,7 @@ final class ToDoListTests: XCTestCase {
     
     func testInitCsvIsSuccessfullIfImportanceHasDifferentRegisters() {
         let expected = ToDoItem.Importance.unimportant
-        if let toDoItem = ToDoItem(csvLine: csvLineWithUpperAndLowerCaseImportance, separator: ";") {
+        if let toDoItem = ToDoItem.parse(csv: csvLineWithUpperAndLowerCaseImportance) {
             XCTAssertEqual(expected, toDoItem.importance)
         } else {
             XCTFail("ToDoItem is nil")
@@ -132,22 +125,23 @@ final class ToDoListTests: XCTestCase {
     }
     
     func testInitCsvIsFailureIfImportanceIsIncorrect() {
-        let toDoItem = ToDoItem(csvLine: csvLineWithIncorrectImportance, separator: ";")
+        let toDoItem = ToDoItem.parse(csv: csvLineWithIncorrectImportance)
         XCTAssertNil(toDoItem)
     }
     
     func testInitCsvIsFailureIfIsDoneIsIncorrect() {
-        let toDoItem = ToDoItem(csvLine: csvLineWithIncorrectIsDone, separator: ";")
+        let toDoItem = ToDoItem.parse(csv: csvLineWithIncorrectIsDone)
         XCTAssertNil(toDoItem)
     }
     
     func testParseCsvRemoveOneLineIfHeadersExist() {
         let expected = 4
         let testBundle = Bundle(for: type(of: self))
+        let fileCache = FileCache()
         
         if let fileURL = testBundle.url(forResource: "csvFileWithHeaders", withExtension: "csv") {
-            let toDoItems = ToDoItem.parseCSV(fileURL: fileURL, isHeaders: true)
-            XCTAssertEqual(expected, toDoItems.count)
+            fileCache.importCSVFromFile(fileURL: fileURL, isHeaders: false)
+            XCTAssertEqual(expected, fileCache.toDoItems.count)
         } else {
             XCTFail("File csvFileWithHeaders.csv does not exists")
         }
@@ -156,10 +150,11 @@ final class ToDoListTests: XCTestCase {
     func testParseCsvDoesNotRemoveOneLineIfHeadersExist() {
         let expected = 4
         let testBundle = Bundle(for: type(of: self))
+        let fileCache = FileCache()
         
         if let fileURL = testBundle.url(forResource: "csvFileWithoutHeaders", withExtension: "csv") {
-            let toDoItems = ToDoItem.parseCSV(fileURL: fileURL, isHeaders: false)
-            XCTAssertEqual(expected, toDoItems.count)
+            fileCache.importCSVFromFile(fileURL: fileURL, isHeaders: false)
+            XCTAssertEqual(expected, fileCache.toDoItems.count)
         } else {
             XCTFail("File csvFileWithHeaders.csv does not exists")
         }

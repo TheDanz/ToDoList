@@ -86,17 +86,30 @@ extension ToDoItem {
 
 // MARK: ToDoItem - CSV
 extension ToDoItem {
+    static var csvSeparator = ";"
     
-    init?(csvLine: String, separator: Character) {
+    var csv: String {
+        
+        var csvString = ""
+        csvString += "'" + id + "'" + Self.csvSeparator
+        csvString += "'" + text + "'" + Self.csvSeparator
+        csvString += "'" + importance.rawValue + "'" + Self.csvSeparator
+        csvString += "'" + (deadline?.ISO8601Format() ?? "") + "'" + Self.csvSeparator
+        csvString += "'" + String(isDone) + "'"
+        
+        return csvString
+    }
+    
+    static func parse(csv: String) -> ToDoItem? {
         
         var cells: [String] = []
         var currentCell = ""
         var insideQuotes = false
         
-        for char in csvLine {
-            if char == "\"" {
+        for char in csv {
+            if char == "'" {
                 insideQuotes.toggle()
-            } else if char == separator && !insideQuotes {
+            } else if String(char) == Self.csvSeparator && !insideQuotes {
                 cells.append(currentCell)
                 currentCell = ""
             } else {
@@ -112,35 +125,15 @@ extension ToDoItem {
         let formatter = ISO8601DateFormatter()
         let currentDate = Date()
         
-        self.id = cells[0]
-        self.text = cells[1]
-        self.importance = importance
-        self.deadline = formatter.date(from: cells[3])
-        self.isDone = isDone
-        self.creationDate = currentDate
-        self.modificationDate = currentDate
-    }
-    
-    static func parseCSV(fileURL: URL, isHeaders: Bool) -> [ToDoItem] {
-        do {
-            let csvData = try String(contentsOf: fileURL)
-            var lines = csvData.components(separatedBy: .newlines)
-            
-            if isHeaders {
-                lines.removeFirst()
-            }
-            
-            var parsedToDoItems: [ToDoItem] = []
-            for line in lines {
-                if let toDoItem = ToDoItem(csvLine: line, separator: ";") {
-                    parsedToDoItems.append(toDoItem)
-                }
-            }
-            
-            return parsedToDoItems
-        } catch {
-            print("Error reading CSV file: \(error.localizedDescription)")
-            return []
-        }
+        let toDoItem = ToDoItem(
+            id: cells[0],
+            text: cells[1],
+            importance: importance,
+            deadline: formatter.date(from: cells[3]),
+            isDone: isDone,
+            modificationDate: currentDate
+        )
+        
+        return toDoItem
     }
 }
