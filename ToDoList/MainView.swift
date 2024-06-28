@@ -120,14 +120,14 @@ struct MainView: View {
                         Text("Выполнено — \(model.toDoItems.filter { $0.isDone }.count)")
                         Spacer()
                         Menu {
-                            Section {
+                            Section("Выполненные") {
                                 Button(action: {
                                     areDoneTasksShown.toggle()
                                 })  {
-                                    Text(areDoneTasksShown ? "Скрыть сделанные" : "Показать сделанные")
+                                    Text(areDoneTasksShown ? "Скрыть" : "Показать")
                                 }
                             }
-                            Section {
+                            Section("Сортировка") {
                                 Button(action: {
                                     model.sort(by: .creationDate)
                                 })  {
