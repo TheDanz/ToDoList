@@ -1,3 +1,4 @@
+import SwiftUI
 import Foundation
 
 struct ToDoItem {
@@ -14,13 +15,15 @@ struct ToDoItem {
     let isDone: Bool
     let creationDate: Date
     let modificationDate: Date?
+    let color: Color
     
     init(id: String = UUID().uuidString,
          text: String,
          importance: Importance = .normal,
          deadline: Date? = nil,
          isDone: Bool = false,
-         modificationDate: Date? = nil
+         modificationDate: Date? = nil,
+         color: Color = .white
     ) {
         self.id = id
         self.text = text
@@ -29,6 +32,7 @@ struct ToDoItem {
         self.isDone = isDone
         self.creationDate = Date()
         self.modificationDate = modificationDate
+        self.color = color
     }
 }
 
