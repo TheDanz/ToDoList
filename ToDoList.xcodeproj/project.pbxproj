@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0545BDE22C2F1761009B4A68 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE12C2F1761009B4A68 /* CustomColor.swift */; };
+		0545BDE42C2F1A29009B4A68 /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */; };
 		058C240D2C25DB5900E31028 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C240C2C25DB5900E31028 /* FileCache.swift */; };
 		058C24112C26127600E31028 /* csvFileWithHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24102C26127600E31028 /* csvFileWithHeaders.csv */; };
 		058C24152C26151600E31028 /* csvFileWithoutHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		0545BDE12C2F1761009B4A68 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
 		058C240C2C25DB5900E31028 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		058C24102C26127600E31028 /* csvFileWithHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithHeaders.csv; sourceTree = "<group>"; };
 		058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithoutHeaders.csv; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				05C66DA92C25B02800033CB5 /* ToDoListApp.swift */,
 				05C66DAB2C25B02800033CB5 /* ContentView.swift */,
 				05C66DD32C25B1CE00033CB5 /* ToDoItem.swift */,
+				0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */,
 				0545BDE12C2F1761009B4A68 /* CustomColor.swift */,
 				058C240C2C25DB5900E31028 /* FileCache.swift */,
 				05C66DAD2C25B02900033CB5 /* Assets.xcassets */,
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0545BDE42C2F1A29009B4A68 /* ToDoItemModel.swift in Sources */,
 				05C66DAC2C25B02800033CB5 /* ContentView.swift in Sources */,
 				05C66DAA2C25B02800033CB5 /* ToDoListApp.swift in Sources */,
 				058C240D2C25DB5900E31028 /* FileCache.swift in Sources */,
