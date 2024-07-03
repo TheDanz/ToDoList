@@ -3,13 +3,62 @@ import Foundation
 
 final class ToDoItemModel: ObservableObject {
     @Published var toDoItems: [ToDoItem] = [
-        ToDoItem(id: "1", text: "task 1", importance: .unimportant, deadline: Date(), color: .red),
-        ToDoItem(id: "2", text: "task 2", importance: .normal, deadline: Date(), color: .green),
-        ToDoItem(id: "3", text: "task 3", importance: .important, deadline: Date(), color: .brown),
-        ToDoItem(id: "4", text: "task 4", importance: .unimportant, color: .orange),
-        ToDoItem(id: "5", text: "task 5", importance: .normal, color: .yellow),
-        ToDoItem(id: "6", text: "task 6", importance: .important, color: .blue)
+        ToDoItem(
+            id: "1",
+            text: "task 1",
+            importance: .unimportant,
+            deadline: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
+            color: .red
+        ),
+        ToDoItem(
+            id: "2",
+            text: "task 2",
+            importance: .normal,
+            deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
+            color: .green
+        ),
+        ToDoItem(
+            id: "3",
+            text: "task 3",
+            importance: .important,
+            deadline: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
+            color: .brown
+        ),
+        ToDoItem(
+            id: "4",
+            text: "task 4",
+            importance: .unimportant,
+            deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
+            color: .orange
+        ),
+        ToDoItem(
+            id: "5",
+            text: "task 5",
+            importance: .normal,
+            color: .yellow
+        ),
+        ToDoItem(
+            id: "6",
+            text: "task 6",
+            importance: .important,
+            deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
+            color: .blue
+        )
     ]
+    
+    var groupedTasksByDeadline: Dictionary<String, [ToDoItem]> {
+        var dict = Dictionary<String, [ToDoItem]>()
+        
+        for item in toDoItems {
+            if let deadline = item.deadline {
+                dict[getDayAndMonth(from: deadline), default: []].append(item)
+            } else {
+                dict["Другое", default: []].append(item)
+            }
+        }
+        
+        return dict
+    }
     
     func addItem(text: String, importance: ToDoItem.Importance = .normal, deadline: Date? = nil) {
         let newItem = ToDoItem(text: text, importance: importance, deadline: deadline)

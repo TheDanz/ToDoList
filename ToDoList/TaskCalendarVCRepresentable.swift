@@ -6,9 +6,7 @@ struct TaskCalendarVCRepresentable: UIViewControllerRepresentable {
     var model: ToDoItemModel
     
     func makeUIViewController(context: Context) -> TaskCalendarVC {
-        let taskCalendarVC = TaskCalendarVC()
-        taskCalendarVC.model = model
-        return taskCalendarVC
+        return TaskCalendarVC(model: model)
     }
     
     func updateUIViewController(_ uiViewController: TaskCalendarVC, context: Context) {
