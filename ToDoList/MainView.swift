@@ -7,6 +7,7 @@ struct MainView: View {
     @State private var showNewDetailsView = false
     @State private var showDatePicker = false
     @State private var showEditingDetailView = false
+    @State private var showTaskCalendarVC = false
     @State private var selectedDateToChange = Date()
     @State private var selectedItem: ToDoItem?
     @State private var areDoneTasksShown = true
@@ -148,6 +149,16 @@ struct MainView: View {
                 }
             }
             .navigationTitle("Мои дела")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showTaskCalendarVC = true
+                    } label: {
+                        Image(systemName: "calendar")
+                    }
+                }
+            }
+
             .background(colorScheme == .dark ? CustomColor.backDarkiOSPrimary : CustomColor.backLightPrimary)
             .scrollContentBackground(.hidden)
             .overlay(alignment: .bottom) {
@@ -179,6 +190,9 @@ struct MainView: View {
                 selectedDeadline: selectedItem?.deadline ?? Date(),
                 selectedColor: selectedItem?.color ?? .white
             )
+        }
+        .fullScreenCover(isPresented: $showTaskCalendarVC) {
+            TaskCalendarVCRepresentable(model: model)
         }
         .fullScreenCover(isPresented: $showDatePicker) {
             VStack {
