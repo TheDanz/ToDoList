@@ -23,6 +23,8 @@ class TaskCalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Мои дела"
+        
         taskTableView.delegate = self
         taskTableView.dataSource = self
         
