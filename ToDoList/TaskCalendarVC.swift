@@ -140,7 +140,13 @@ class TaskCalendarVC: UIViewController {
 
 
 // MARK: Collection View
-extension TaskCalendarVC: UICollectionViewDelegate { }
+extension TaskCalendarVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = indexPath.row
+        selectedSection = section
+        taskTableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
+    }
+}
 
 extension TaskCalendarVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -160,34 +166,10 @@ extension TaskCalendarVC: UICollectionViewDataSource {
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let section = indexPath.row
-        selectedSection = section
-        taskTableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
-    }
 }
 
 // MARK: Table View
-extension TaskCalendarVC: UITableViewDelegate { }
-
-extension TaskCalendarVC: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        model.groupedTasksByDeadline.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sortedDates = model.groupedTasksByDeadline.keys.sorted()
-        return sortedDates[section]
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sortedDates = model.groupedTasksByDeadline.keys.sorted()
-        let date = sortedDates[section]
-        return model.groupedTasksByDeadline[date]?.count ?? 0
-    }
-    
+extension TaskCalendarVC: UITableViewDelegate { 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let sortedDates = model.groupedTasksByDeadline.keys.sorted()
         let currentDate = sortedDates[indexPath.section]
@@ -234,6 +216,39 @@ extension TaskCalendarVC: UITableViewDataSource {
         return swipeActions
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let visibleSections = taskTableView.indexPathsForVisibleRows?.map { $0.section } ?? []
+        if let visibleSection = visibleSections.min(), visibleSection != selectedSection {
+            selectedSection = visibleSection
+            dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: true, scrollPosition: .left)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if section != selectedSection {
+            selectedSection = section
+            dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: true, scrollPosition: .left)
+        }
+    }
+}
+
+extension TaskCalendarVC: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        model.groupedTasksByDeadline.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sortedDates = model.groupedTasksByDeadline.keys.sorted()
+        return sortedDates[section]
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let sortedDates = model.groupedTasksByDeadline.keys.sorted()
+        let date = sortedDates[section]
+        return model.groupedTasksByDeadline[date]?.count ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         var config = UIListContentConfiguration.cell()
@@ -254,20 +269,5 @@ extension TaskCalendarVC: UITableViewDataSource {
         
         cell.contentConfiguration = config
         return cell
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let visibleSections = taskTableView.indexPathsForVisibleRows?.map { $0.section } ?? []
-        if let visibleSection = visibleSections.min(), visibleSection != selectedSection {
-            selectedSection = visibleSection
-            dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: true, scrollPosition: .left)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if section != selectedSection {
-            selectedSection = section
-            dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: true, scrollPosition: .left)
-        }
     }
 }
