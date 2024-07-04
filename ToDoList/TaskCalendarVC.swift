@@ -84,8 +84,6 @@ class TaskCalendarVC: UIViewController {
         dateCollectionView.dataSource = self
         dateCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         view.addSubview(dateCollectionView)
-        
-        dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: false, scrollPosition: [])
     }
     
     private func setupTaskTableView() {
@@ -243,7 +241,6 @@ extension TaskCalendarVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        print("header display ")
         if section != selectedSection {
             selectedSection = section
             dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: true, scrollPosition: .left)
