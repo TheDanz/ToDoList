@@ -13,6 +13,7 @@ struct DetailsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) var colorScheme
     
+    var onDismiss: (() -> Void)?
     
     var body: some View {
         VStack(spacing: 16) {
@@ -144,5 +145,8 @@ struct DetailsView: View {
         }
         .padding()
         .background(colorScheme == .dark ? CustomColor.backDarkPrimary : CustomColor.backLightPrimary)
+        .onDisappear(perform: {
+            onDismiss?()
+        })
     }
 }

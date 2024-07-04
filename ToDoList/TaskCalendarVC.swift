@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 class TaskCalendarVC: UIViewController {
     
@@ -24,13 +25,24 @@ class TaskCalendarVC: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-        
+    
     lazy var taskTableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
+    lazy var plusButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        button.tintColor = UIColor(red: 0, green: 0.48, blue: 1, alpha: 1)
+        button.backgroundColor = .white
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,14 +52,30 @@ class TaskCalendarVC: UIViewController {
         setupAllConstraints()
     }
     
+    @objc
+    private func plusButtonClick(_ sender: UIButton) {
+        
+        let rootView = DetailsView(model: model) {
+            DispatchQueue.main.async {
+                self.dateCollectionView.reloadData()
+                self.taskTableView.reloadData()
+            }
+        }
+        
+        let hostingController = UIHostingController(rootView: rootView)
+        self.present(hostingController, animated: true)
+    }
+    
     private func setupAllSubviews() {
         setupDateCollectionView()
         setupTaskTableView()
+        setupPlusButton()
     }
     
     private func setupAllConstraints() {
         setupDateCollectionViewConstraints()
         setupTaskTableViewConstraints()
+        setupPlusButtonConstraints()
     }
     
     private func setupDateCollectionView() {
@@ -63,19 +91,31 @@ class TaskCalendarVC: UIViewController {
         view.addSubview(taskTableView)
     }
     
+    private func setupPlusButton() {
+        plusButton.addTarget(self, action: #selector(plusButtonClick(_:)), for: .touchUpInside)
+        view.addSubview(plusButton)
+    }
+    
     private func setupDateCollectionViewConstraints() {
         dateCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         dateCollectionView.bottomAnchor.constraint(equalTo: taskTableView.topAnchor, constant: 0).isActive = true
         dateCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         dateCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         dateCollectionView.heightAnchor.constraint(equalToConstant: 90).isActive = true
-}
+    }
     
     private func setupTaskTableViewConstraints() {
         taskTableView.topAnchor.constraint(equalTo: dateCollectionView.bottomAnchor, constant: 0).isActive = true
         taskTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         taskTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         taskTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+    }
+    
+    private func setupPlusButtonConstraints() {
+        plusButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        plusButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        plusButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        plusButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
     }
 }
 
