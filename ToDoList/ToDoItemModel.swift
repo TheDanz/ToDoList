@@ -101,8 +101,8 @@ final class ToDoItemModel: ObservableObject {
         return dict
     }
     
-    func addItem(text: String, importance: ToDoItem.Importance = .normal, deadline: Date? = nil) {
-        let newItem = ToDoItem(text: text, importance: importance, deadline: deadline)
+    func addItem(text: String, importance: ToDoItem.Importance = .normal, deadline: Date? = nil, color: Color = .white) {
+        let newItem = ToDoItem(text: text, importance: importance, deadline: deadline, color: color)
         toDoItems.append(newItem)
     }
     

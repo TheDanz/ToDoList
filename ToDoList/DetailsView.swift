@@ -39,7 +39,8 @@ struct DetailsView: View {
                         model.addItem(
                             text: inputText,
                             importance: selectedImportance,
-                            deadline: isDeadlineSelected ? selectedDeadline : nil
+                            deadline: isDeadlineSelected ? selectedDeadline : nil,
+                            color: selectedColor
                         )
                     }
 
