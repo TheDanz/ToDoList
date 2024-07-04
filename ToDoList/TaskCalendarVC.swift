@@ -99,7 +99,10 @@ class TaskCalendarVC: UIViewController {
     private func setupDateCollectionView() {
         dateCollectionView.delegate = self
         dateCollectionView.dataSource = self
-        dateCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        dateCollectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: "DateCollectionViewCell")
+        dateCollectionView.backgroundColor = UIColor(CustomColor.backLightPrimary)
+        dateCollectionView.layer.borderColor = UIColor.gray.cgColor
+        dateCollectionView.layer.borderWidth = 0.3
         view.addSubview(dateCollectionView)
     }
     
@@ -107,6 +110,7 @@ class TaskCalendarVC: UIViewController {
         taskTableView.delegate = self
         taskTableView.dataSource = self
         taskTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        taskTableView.backgroundColor = UIColor(CustomColor.backLightPrimary)
         view.addSubview(taskTableView)
     }
     
@@ -145,6 +149,9 @@ extension TaskCalendarVC: UICollectionViewDelegate {
         let section = indexPath.row
         selectedSection = section
         taskTableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
+        DispatchQueue.main.async {
+            self.dateCollectionView.reloadData()
+        }
     }
 }
 
@@ -154,16 +161,23 @@ extension TaskCalendarVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCollectionViewCell", for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
         
         let sortedDates = model.groupedTasksByDeadline.keys.sorted()
-        let date = sortedDates[indexPath.row]
+        let separatedDate = sortedDates[indexPath.row].split(separator: " ").map({ String($0) })
         
-        let title = UILabel()
-        title.frame = cell.bounds
-        title.text = date
-        cell.contentView.addSubview(title)
+        if indexPath.row == selectedSection {
+            cell.setupContentViewAsSelected()
+        } else {
+            cell.setupContentViewAsUnselected()
+        }
         
+        if separatedDate.count == 1 {
+            cell.configure(day: "", month: "Другое")
+            return cell
+        }
+        
+        cell.configure(day: separatedDate[0], month: separatedDate[1])
         return cell
     }
 }
@@ -221,6 +235,9 @@ extension TaskCalendarVC: UITableViewDelegate {
         if let visibleSection = visibleSections.min(), visibleSection != selectedSection {
             selectedSection = visibleSection
             dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: true, scrollPosition: .left)
+            DispatchQueue.main.async {
+                self.dateCollectionView.reloadData()
+            }
         }
     }
     
@@ -228,6 +245,9 @@ extension TaskCalendarVC: UITableViewDelegate {
         if section != selectedSection {
             selectedSection = section
             dateCollectionView.selectItem(at: IndexPath(item: selectedSection, section: 0), animated: true, scrollPosition: .left)
+            DispatchQueue.main.async {
+                self.dateCollectionView.reloadData()
+            }
         }
     }
 }
