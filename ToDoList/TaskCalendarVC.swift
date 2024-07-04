@@ -106,6 +106,7 @@ class TaskCalendarVC: UIViewController {
     private func setupTaskTableView() {
         taskTableView.delegate = self
         taskTableView.dataSource = self
+        taskTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(taskTableView)
     }
     
@@ -234,18 +235,24 @@ extension TaskCalendarVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var config = UIListContentConfiguration.cell()
+        
         let sortedDates = model.groupedTasksByDeadline.keys.sorted()
         let date = sortedDates[indexPath.section]
+        
         if let task = model.groupedTasksByDeadline[date]?[indexPath.row] {
-            cell.textLabel?.numberOfLines = 3
-            cell.textLabel?.text = task.text
+            config.textProperties.numberOfLines = 3
+            config.text = task.text
             if task.isDone {
-                let attributedString = NSMutableAttributedString(string: cell.textLabel!.text!)
+                let attributedString = NSMutableAttributedString(string: config.text ?? "")
                 attributedString.addAttribute(.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
-                cell.textLabel!.attributedText = attributedString
+                config.attributedText = attributedString
+                config.textProperties.color = .gray
             }
         }
+        
+        cell.contentConfiguration = config
         return cell
     }
     
