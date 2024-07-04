@@ -75,7 +75,7 @@ final class ToDoItemModel: ObservableObject {
         newImportance: ToDoItem.Importance? = nil,
         newDeadline: Date? = nil,
         newIsDone: Bool? = nil,
-        newColor: Color?
+        newColor: Color? = nil
     ) {
         if let index = toDoItems.firstIndex(where: { $0.id == id }) {
             var item = toDoItems[index]
@@ -83,7 +83,7 @@ final class ToDoItemModel: ObservableObject {
                 id: item.id,
                 text: newText ?? item.text,
                 importance: newImportance ?? item.importance,
-                deadline: newDeadline,
+                deadline: newDeadline ?? item.deadline,
                 isDone: newIsDone ?? item.isDone,
                 modificationDate: Date(),
                 color: newColor ?? item.color

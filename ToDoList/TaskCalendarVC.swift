@@ -113,7 +113,6 @@ extension TaskCalendarVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         let sortedDates = model.groupedTasksByDeadline.keys.sorted()
         return sortedDates[section]
     }
@@ -124,12 +123,64 @@ extension TaskCalendarVC: UITableViewDataSource {
         return model.groupedTasksByDeadline[date]?.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let sortedDates = model.groupedTasksByDeadline.keys.sorted()
+        let currentDate = sortedDates[indexPath.section]
+        
+        guard let swipedItem = model.groupedTasksByDeadline[currentDate]?[indexPath.row] else { return nil }
+        
+        let contextualAction = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
+            
+            if self.model.toDoItems.firstIndex(where: { $0.id == swipedItem.id }) != nil {
+                self.model.updateToDoItem(id: swipedItem.id, newIsDone: true)
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            }
+            
+            completionHandler(true)
+        }
+        contextualAction.image = UIImage(systemName: "checkmark.circle.fill")
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextualAction])
+        return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let sortedDates = model.groupedTasksByDeadline.keys.sorted()
+        let currentDate = sortedDates[indexPath.section]
+        
+        guard let swipedItem = model.groupedTasksByDeadline[currentDate]?[indexPath.row] else { return nil }
+        
+        let contextualAction = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
+            
+            if self.model.toDoItems.firstIndex(where: { $0.id == swipedItem.id }) != nil {
+                self.model.updateToDoItem(id: swipedItem.id, newIsDone: false)
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            }
+            
+            completionHandler(true)
+        }
+        contextualAction.image = UIImage(systemName: "arrow.uturn.backward.circle.fill")
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextualAction])
+        return swipeActions
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let sortedDates = model.groupedTasksByDeadline.keys.sorted()
         let date = sortedDates[indexPath.section]
         if let task = model.groupedTasksByDeadline[date]?[indexPath.row] {
+            cell.textLabel?.numberOfLines = 3
             cell.textLabel?.text = task.text
+            if task.isDone {
+                let attributedString = NSMutableAttributedString(string: cell.textLabel!.text!)
+                attributedString.addAttribute(.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
+                cell.textLabel!.attributedText = attributedString
+            }
         }
         return cell
     }
