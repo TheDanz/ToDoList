@@ -49,6 +49,7 @@ class TaskCalendarVC: UIViewController {
         
         self.title = "Мои дела"
         
+        setupBarButtonItems()
         setupAllSubviews()
         setupAllConstraints()
     }
@@ -65,6 +66,22 @@ class TaskCalendarVC: UIViewController {
         
         let hostingController = UIHostingController(rootView: rootView)
         self.present(hostingController, animated: true)
+    }
+    
+    @objc
+    private func backButtonClick(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    
+    private func setupBarButtonItems() {
+        let backButton = UIBarButtonItem(
+            image: UIImage(systemName: "arrowshape.backward.circle.fill"),
+            style: .plain,
+            target: self,
+            action: #selector(backButtonClick(_:))
+        )
+        
+        navigationItem.leftBarButtonItems = [backButton]
     }
     
     private func setupAllSubviews() {
