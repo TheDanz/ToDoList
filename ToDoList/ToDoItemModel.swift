@@ -88,17 +88,21 @@ final class ToDoItemModel: ObservableObject {
     ]
     
     var groupedTasksByDeadline: Dictionary<String, [ToDoItem]> {
-        var dict = Dictionary<String, [ToDoItem]>()
+        var groupedTasks = Dictionary<String, [ToDoItem]>()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM"
         
         for item in toDoItems {
             if let deadline = item.deadline {
-                dict[getDayAndMonth(from: deadline), default: []].append(item)
+                let formattedDeadline = formatter.string(from: deadline)
+                groupedTasks[formattedDeadline, default: []].append(item)
             } else {
-                dict["Другое", default: []].append(item)
+                groupedTasks["Другое", default: []].append(item)
             }
         }
         
-        return dict
+        return groupedTasks
     }
     
     func addItem(text: String, importance: ToDoItem.Importance = .normal, deadline: Date? = nil, color: Color = .white) {
