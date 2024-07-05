@@ -8,14 +8,16 @@ final class ToDoItemModel: ObservableObject {
             text: "task 1",
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
-            color: .red
+            color: .red,
+            categoty: .red
         ),
         ToDoItem(
             id: "2",
             text: "task 2",
             importance: .normal,
             deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
-            color: .green
+            color: .green,
+            categoty: .green
         ),
         ToDoItem(
             id: "3",
@@ -29,13 +31,15 @@ final class ToDoItemModel: ObservableObject {
             text: "task 4",
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 4, to: Date()),
-            color: .orange
+            color: .orange,
+            categoty: .red
         ),
         ToDoItem(
             id: "5",
             text: "task 5",
             importance: .normal,
-            color: .yellow
+            color: .yellow,
+            categoty: .blue
         ),
         ToDoItem(
             id: "6",
@@ -56,34 +60,39 @@ final class ToDoItemModel: ObservableObject {
             text: "task 8\ntask 8\ntask 8",
             importance: .normal,
             deadline: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
-            color: .green
+            color: .green,
+            categoty: .red
         ),
         ToDoItem(
             id: "9",
             text: "task 9\ntask 9\ntask 9",
             importance: .important,
             deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
-            color: .brown
+            color: .brown,
+            categoty: .blue
         ),
         ToDoItem(
             id: "10",
             text: "task 10\ntask 10\ntask 10",
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
-            color: .orange
+            color: .orange,
+            categoty: .red
         ),
         ToDoItem(
             id: "11",
             text: "task 11\ntask 11\ntask 11",
             importance: .normal,
-            color: .yellow
+            color: .yellow,
+            categoty: .blue
         ),
         ToDoItem(
             id: "12",
             text: "task 12\ntask 12\ntask 12",
             importance: .important,
             deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
-            color: .blue
+            color: .blue,
+            categoty: .green
         )
     ]
     
@@ -105,8 +114,20 @@ final class ToDoItemModel: ObservableObject {
         return groupedTasks
     }
     
-    func addItem(text: String, importance: ToDoItem.Importance = .normal, deadline: Date? = nil, color: Color = .white) {
-        let newItem = ToDoItem(text: text, importance: importance, deadline: deadline, color: color)
+    func addItem(
+        text: String,
+        importance: ToDoItem.Importance = .normal,
+        deadline: Date? = nil,
+        color: Color = .white,
+        category: Color = .clear
+    ) {
+        let newItem = ToDoItem(
+            text: text,
+            importance: importance,
+            deadline: deadline,
+            color: color,
+            categoty: category
+        )
         toDoItems.append(newItem)
     }
     
@@ -120,7 +141,8 @@ final class ToDoItemModel: ObservableObject {
         newImportance: ToDoItem.Importance? = nil,
         newDeadline: Date? = nil,
         newIsDone: Bool? = nil,
-        newColor: Color? = nil
+        newColor: Color? = nil,
+        newCategory: Color? = nil
     ) {
         if let index = toDoItems.firstIndex(where: { $0.id == id }) {
             var item = toDoItems[index]
@@ -131,7 +153,8 @@ final class ToDoItemModel: ObservableObject {
                 deadline: newDeadline ?? item.deadline,
                 isDone: newIsDone ?? item.isDone,
                 modificationDate: Date(),
-                color: newColor ?? item.color
+                color: newColor ?? item.color,
+                categoty: newCategory ?? .clear
             )
             toDoItems[index] = item
         }
