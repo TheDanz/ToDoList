@@ -23,12 +23,16 @@ class TaskCalendarVC: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor(CustomColor.backLightPrimary)
+        collectionView.layer.borderColor = UIColor.gray.cgColor
+        collectionView.layer.borderWidth = 0.3
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
     lazy var taskTableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = UIColor(CustomColor.backLightPrimary)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -48,6 +52,8 @@ class TaskCalendarVC: UIViewController {
         super.viewDidLoad()
         
         self.title = "Мои дела"
+        self.view.backgroundColor = UIColor(CustomColor.backLightPrimary)
+        self.navigationController?.navigationBar.backgroundColor = .white
         
         setupBarButtonItems()
         setupAllSubviews()
@@ -99,18 +105,14 @@ class TaskCalendarVC: UIViewController {
     private func setupDateCollectionView() {
         dateCollectionView.delegate = self
         dateCollectionView.dataSource = self
-        dateCollectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: "DateCollectionViewCell")
-        dateCollectionView.backgroundColor = UIColor(CustomColor.backLightPrimary)
-        dateCollectionView.layer.borderColor = UIColor.gray.cgColor
-        dateCollectionView.layer.borderWidth = 0.3
+        dateCollectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
         view.addSubview(dateCollectionView)
     }
     
     private func setupTaskTableView() {
         taskTableView.delegate = self
         taskTableView.dataSource = self
-        taskTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        taskTableView.backgroundColor = UIColor(CustomColor.backLightPrimary)
+        taskTableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.identifier)
         view.addSubview(taskTableView)
     }
     
@@ -130,8 +132,8 @@ class TaskCalendarVC: UIViewController {
     private func setupTaskTableViewConstraints() {
         taskTableView.topAnchor.constraint(equalTo: dateCollectionView.bottomAnchor, constant: 0).isActive = true
         taskTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        taskTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        taskTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        taskTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        taskTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
     }
     
     private func setupPlusButtonConstraints() {
@@ -161,7 +163,7 @@ extension TaskCalendarVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCollectionViewCell", for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCollectionViewCell.identifier, for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
         
         let sortedDates = model.groupedTasksByDeadline.keys.sorted()
         let separatedDate = sortedDates[indexPath.row].split(separator: " ").map({ String($0) })
@@ -269,25 +271,38 @@ extension TaskCalendarVC: UITableViewDataSource {
         return model.groupedTasksByDeadline[date]?.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        44
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var config = UIListContentConfiguration.cell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as? TaskTableViewCell else { return UITableViewCell() }
         
         let sortedDates = model.groupedTasksByDeadline.keys.sorted()
         let date = sortedDates[indexPath.section]
         
         if let task = model.groupedTasksByDeadline[date]?[indexPath.row] {
-            config.textProperties.numberOfLines = 3
-            config.text = task.text
+            cell.titleLabel.text = task.text
+            
+            let count = model.groupedTasksByDeadline[date]!.count
+            
+            if count == 1 {
+                cell.makeСornersRoundedAtTopAndBootom()
+            } else {
+                if indexPath.row == 0 {
+                    cell.makeСornersRoundedAtTop()
+                } else if indexPath.row == count - 1 {
+                    cell.makeСornersRoundedAtBottom()
+                }
+            }
+            
             if task.isDone {
-                let attributedString = NSMutableAttributedString(string: config.text ?? "")
+                let attributedString = NSMutableAttributedString(string: task.text)
                 attributedString.addAttribute(.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
-                config.attributedText = attributedString
-                config.textProperties.color = .gray
+                cell.titleLabel.attributedText = attributedString
+                cell.titleLabel.textColor = .gray
             }
         }
-        
-        cell.contentConfiguration = config
         return cell
     }
 }

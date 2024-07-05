@@ -2,6 +2,8 @@ import UIKit
 
 class DateCollectionViewCell: UICollectionViewCell {
     
+    static var identifier = "DateCollectionViewCell"
+    
     private lazy var dayLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
