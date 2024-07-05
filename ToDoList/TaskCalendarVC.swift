@@ -23,7 +23,7 @@ class TaskCalendarVC: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor(CustomColor.backLightPrimary)
+        collectionView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkiOSPrimary) : UIColor(CustomColor.backLightPrimary)
         collectionView.layer.borderColor = UIColor.gray.cgColor
         collectionView.layer.borderWidth = 0.3
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ class TaskCalendarVC: UIViewController {
     
     lazy var taskTableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = UIColor(CustomColor.backLightPrimary)
+        tableView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkiOSPrimary) : UIColor(CustomColor.backLightPrimary)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -42,6 +42,7 @@ class TaskCalendarVC: UIViewController {
         button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         button.tintColor = UIColor(red: 0, green: 0.48, blue: 1, alpha: 1)
         button.backgroundColor = .white
+        button.layer.cornerRadius = 40
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -52,8 +53,8 @@ class TaskCalendarVC: UIViewController {
         super.viewDidLoad()
         
         self.title = "Мои дела"
-        self.view.backgroundColor = UIColor(CustomColor.backLightPrimary)
-        self.navigationController?.navigationBar.backgroundColor = .white
+        self.view.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkiOSPrimary) : UIColor(CustomColor.backLightPrimary)
+        self.navigationController?.navigationBar.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkiOSPrimary) : UIColor(CustomColor.backLightSecondary)
         
         setupBarButtonItems()
         setupAllSubviews()
@@ -63,7 +64,7 @@ class TaskCalendarVC: UIViewController {
     @objc
     private func plusButtonClick(_ sender: UIButton) {
         
-        let rootView = DetailsView(model: model) {
+        let rootView = DetailsView(model: model, colorScheme: traitCollection.userInterfaceStyle == .dark ? .dark : .light) {
             DispatchQueue.main.async {
                 self.dateCollectionView.reloadData()
                 self.taskTableView.reloadData()
@@ -219,6 +220,7 @@ extension TaskCalendarVC: UITableViewDelegate {
             completionHandler(true)
         }
         contextualAction.image = UIImage(systemName: "checkmark.circle.fill")
+        contextualAction.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.colorDarkGreen) : UIColor(CustomColor.colorLightGreen)
         
         let swipeActions = UISwipeActionsConfiguration(actions: [contextualAction])
         return swipeActions
@@ -242,6 +244,7 @@ extension TaskCalendarVC: UITableViewDelegate {
             completionHandler(true)
         }
         contextualAction.image = UIImage(systemName: "arrow.uturn.backward.circle.fill")
+        contextualAction.backgroundColor = UIColor(CustomColor.colorLightGrayLight)
         
         let swipeActions = UISwipeActionsConfiguration(actions: [contextualAction])
         return swipeActions
@@ -283,6 +286,7 @@ extension TaskCalendarVC: UITableViewDelegate {
             selectedDeadline: selectedTask?.deadline ?? Date(),
             selectedColor: selectedTask?.color ?? .white,
             selectedCategory: selectedTask?.category ?? .defaultCategory(),
+            colorScheme: traitCollection.userInterfaceStyle == .dark ? .dark : .light,
             onDismiss: {
                 DispatchQueue.main.async {
                     self.dateCollectionView.reloadData()
@@ -325,7 +329,7 @@ extension TaskCalendarVC: UITableViewDataSource {
         
         if let task = model.groupedTasksByDeadline[date]?[indexPath.row] {
             cell.titleLabel.attributedText = nil
-            cell.titleLabel.textColor = .black
+            cell.titleLabel.textColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.labelDarkPrimary) : UIColor(CustomColor.labelLightPrimary)
             
             cell.titleLabel.text = task.text
             cell.categoryView.backgroundColor = task.category.color
@@ -339,6 +343,8 @@ extension TaskCalendarVC: UITableViewDataSource {
                     cell.makeСornersRoundedAtTop()
                 } else if indexPath.row == count - 1 {
                     cell.makeСornersRoundedAtBottom()
+                } else {
+                    cell.removeCornerRounding()
                 }
             }
             

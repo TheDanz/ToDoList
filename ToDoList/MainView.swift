@@ -177,7 +177,7 @@ struct MainView: View {
             }
         }
         .sheet(isPresented: $showNewDetailsView) {
-            DetailsView(model: model)
+            DetailsView(model: model, colorScheme: colorScheme)
         }
         .sheet(isPresented: $showEditingDetailView) {
             DetailsView(
@@ -189,7 +189,8 @@ struct MainView: View {
                 isDeadlineSelected: selectedItem?.deadline != nil ? true : false,
                 selectedDeadline: selectedItem?.deadline ?? Date(),
                 selectedColor: selectedItem?.color ?? .white,
-                selectedCategory: selectedItem?.category ?? .defaultCategory()
+                selectedCategory: selectedItem?.category ?? .defaultCategory(),
+                colorScheme: colorScheme
             )
         }
         .fullScreenCover(isPresented: $showTaskCalendarVC) {

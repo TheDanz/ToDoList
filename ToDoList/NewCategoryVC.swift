@@ -6,7 +6,7 @@ class NewCategoryViewController: UIViewController, UIColorPickerViewControllerDe
     
     lazy var containerView = {
         let containerView = UIView()
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkiOSPrimary) : UIColor(CustomColor.backLightPrimary)
         containerView.layer.cornerRadius = 12
         containerView.translatesAutoresizingMaskIntoConstraints = false
         return containerView
@@ -14,8 +14,13 @@ class NewCategoryViewController: UIViewController, UIColorPickerViewControllerDe
     
     lazy var textField = {
         let textField = UITextField()
-        textField.placeholder = "Название категории"
+        textField.placeholder = "Новая категория"
+        textField.textColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.labelDarkPrimary) : UIColor(CustomColor.labelLightPrimary)
+        textField.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkSecondary) : UIColor(CustomColor.backLightSecondary)
         textField.borderStyle = .roundedRect
+        textField.layer.cornerRadius = 8
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.colorDarkGrayLight).cgColor : UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1.00).cgColor
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -30,7 +35,7 @@ class NewCategoryViewController: UIViewController, UIColorPickerViewControllerDe
     lazy var colorDisplayView = {
         let view = UIView()
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.colorDarkGrayLight).cgColor : UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1.00).cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

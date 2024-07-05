@@ -30,7 +30,7 @@ final class ToDoItemModel: ObservableObject {
             id: "4",
             text: "task 4",
             importance: .unimportant,
-            deadline: Calendar.current.date(byAdding: .day, value: 4, to: Date()),
+            deadline: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
             color: .orange,
             categoty: TaskCategory(name: "Работа", color: .red)
         ),
@@ -45,7 +45,7 @@ final class ToDoItemModel: ObservableObject {
             id: "6",
             text: "task 6",
             importance: .important,
-            deadline: Calendar.current.date(byAdding: .day, value: 5, to: Date()),
+            deadline: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
             color: .blue
         ),
         ToDoItem(

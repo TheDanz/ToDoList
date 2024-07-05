@@ -12,7 +12,7 @@ struct DetailsView: View {
     @State var selectedColor = Color(red: 0, green: 0, blue: 0)
     @State var selectedCategory = TaskCategory.defaultCategory()
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.colorScheme) var colorScheme
+    var colorScheme: ColorScheme
     
     var onDismiss: (() -> Void)?
     
@@ -165,6 +165,7 @@ struct DetailsView: View {
             .background(colorScheme == .dark ? CustomColor.backDarkPrimary : CustomColor.backLightPrimary)
             .scrollContentBackground(.hidden)
         }
+        .environment(\.colorScheme, colorScheme)
         .padding()
         .background(colorScheme == .dark ? CustomColor.backDarkPrimary : CustomColor.backLightPrimary)
         .onDisappear(perform: {

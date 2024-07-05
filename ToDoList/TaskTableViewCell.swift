@@ -25,6 +25,7 @@ class TaskTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkSecondary) : UIColor(CustomColor.backLightSecondary)
         contentView.addSubview(titleLabel)
         contentView.addSubview(categoryView)
         setupTitleLabelConstraints()
@@ -72,6 +73,11 @@ class TaskTableViewCell: UITableViewCell {
         mask.path = path.cgPath
         self.layer.mask = mask
     }
+    
+    func removeCornerRounding() {
+        layer.mask = nil
+    }
+
     
     private func setupTitleLabelConstraints() {
         titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true

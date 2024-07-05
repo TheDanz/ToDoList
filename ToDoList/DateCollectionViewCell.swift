@@ -43,8 +43,8 @@ class DateCollectionViewCell: UICollectionViewCell {
     func setupContentViewAsSelected() {
         contentView.layer.cornerRadius = 12
         contentView.layer.borderWidth = 3
-        contentView.layer.borderColor = UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1.00).cgColor
-        contentView.backgroundColor = UIColor(red: 0.84, green: 0.84, blue: 0.79, alpha: 1.00)
+        contentView.layer.borderColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.colorDarkGrayLight).cgColor : UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1.00).cgColor
+        contentView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor(CustomColor.backDarkSecondary) : UIColor(CustomColor.backLightSecondary)
     }
     
     func setupContentViewAsUnselected() {
