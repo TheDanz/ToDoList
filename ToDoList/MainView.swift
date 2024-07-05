@@ -189,7 +189,7 @@ struct MainView: View {
                 isDeadlineSelected: selectedItem?.deadline != nil ? true : false,
                 selectedDeadline: selectedItem?.deadline ?? Date(),
                 selectedColor: selectedItem?.color ?? .white,
-                selectedCategory: selectedItem?.category ?? .clear
+                selectedCategory: selectedItem?.category ?? .defaultCategory()
             )
         }
         .fullScreenCover(isPresented: $showTaskCalendarVC) {

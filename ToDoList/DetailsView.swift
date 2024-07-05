@@ -10,7 +10,7 @@ struct DetailsView: View {
     @State var isDeadlineSelected = false
     @State var selectedDeadline: Date = (Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date())
     @State var selectedColor = Color(red: 0, green: 0, blue: 0)
-    @State var selectedCategory = Color.clear
+    @State var selectedCategory = TaskCategory.defaultCategory()
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) var colorScheme
     
@@ -111,33 +111,19 @@ struct DetailsView: View {
                     
                     HStack {
                         Menu {
-                            Button {
-                                selectedCategory = .red
-                            } label: {
-                                Text("Работа")
+                            ForEach(model.categories, id: \.name) { category in
+                                Button {
+                                    selectedCategory = TaskCategory(name: category.name, color: category.color)
+                                } label: {
+                                    Text(category.name)
+                                }
                             }
-                            Button {
-                                selectedCategory = .blue
-                            } label: {
-                                Text("Учеба")
-                            }
-                            Button {
-                                selectedCategory = .green
-                            } label: {
-                                Text("Хобби")
-                            }
-                            Button {
-                                selectedCategory = .clear
-                            } label: {
-                                Text("Другое")
-                            }
-
                         } label: {
                             Text("Выбрать категорию")
                         }
                         Spacer()
                         Circle()
-                            .fill(selectedCategory)
+                            .fill(Color(selectedCategory.color))
                             .frame(width: 10, height: 10)
                             .shadow(color: .black.opacity(0.7), radius: 2, x: 0, y: 3)
                     }

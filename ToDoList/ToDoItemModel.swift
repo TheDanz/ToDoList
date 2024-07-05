@@ -9,7 +9,7 @@ final class ToDoItemModel: ObservableObject {
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
             color: .red,
-            categoty: .red
+            categoty: TaskCategory(name: "Работа", color: .red)
         ),
         ToDoItem(
             id: "2",
@@ -17,7 +17,7 @@ final class ToDoItemModel: ObservableObject {
             importance: .normal,
             deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
             color: .green,
-            categoty: .green
+            categoty: TaskCategory(name: "Хобби", color: .green)
         ),
         ToDoItem(
             id: "3",
@@ -32,14 +32,14 @@ final class ToDoItemModel: ObservableObject {
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 4, to: Date()),
             color: .orange,
-            categoty: .red
+            categoty: TaskCategory(name: "Работа", color: .red)
         ),
         ToDoItem(
             id: "5",
             text: "task 5",
             importance: .normal,
             color: .yellow,
-            categoty: .blue
+            categoty: TaskCategory(name: "Учеба", color: .blue)
         ),
         ToDoItem(
             id: "6",
@@ -61,7 +61,7 @@ final class ToDoItemModel: ObservableObject {
             importance: .normal,
             deadline: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
             color: .green,
-            categoty: .red
+            categoty: TaskCategory(name: "Работа", color: .red)
         ),
         ToDoItem(
             id: "9",
@@ -69,7 +69,7 @@ final class ToDoItemModel: ObservableObject {
             importance: .important,
             deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
             color: .brown,
-            categoty: .blue
+            categoty: TaskCategory(name: "Учеба", color: .blue)
         ),
         ToDoItem(
             id: "10",
@@ -77,14 +77,14 @@ final class ToDoItemModel: ObservableObject {
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
             color: .orange,
-            categoty: .red
+            categoty: TaskCategory(name: "Работа", color: .red)
         ),
         ToDoItem(
             id: "11",
             text: "task 11\ntask 11\ntask 11",
             importance: .normal,
             color: .yellow,
-            categoty: .blue
+            categoty: TaskCategory(name: "Учеба", color: .blue)
         ),
         ToDoItem(
             id: "12",
@@ -92,8 +92,15 @@ final class ToDoItemModel: ObservableObject {
             importance: .important,
             deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
             color: .blue,
-            categoty: .green
+            categoty: TaskCategory(name: "Хобби", color: .green)
         )
+    ]
+    
+    @Published var categories: [TaskCategory] = [
+        TaskCategory(name: "Работа", color: .red),
+        TaskCategory(name: "Учеба", color: .blue),
+        TaskCategory(name: "Хобби", color: .green),
+        TaskCategory.defaultCategory()
     ]
     
     var groupedTasksByDeadline: Dictionary<String, [ToDoItem]> {
@@ -119,7 +126,7 @@ final class ToDoItemModel: ObservableObject {
         importance: ToDoItem.Importance = .normal,
         deadline: Date? = nil,
         color: Color = .white,
-        category: Color = .clear
+        category: TaskCategory = .defaultCategory()
     ) {
         let newItem = ToDoItem(
             text: text,
@@ -142,7 +149,7 @@ final class ToDoItemModel: ObservableObject {
         newDeadline: Date? = nil,
         newIsDone: Bool? = nil,
         newColor: Color? = nil,
-        newCategory: Color? = nil
+        newCategory: TaskCategory? = nil
     ) {
         if let index = toDoItems.firstIndex(where: { $0.id == id }) {
             var item = toDoItems[index]
@@ -154,7 +161,7 @@ final class ToDoItemModel: ObservableObject {
                 isDone: newIsDone ?? item.isDone,
                 modificationDate: Date(),
                 color: newColor ?? item.color,
-                categoty: newCategory ?? .clear
+                categoty: newCategory ?? .defaultCategory()
             )
             toDoItems[index] = item
         }

@@ -79,6 +79,13 @@ class TaskCalendarVC: UIViewController {
         self.dismiss(animated: true)
     }
     
+    @objc
+    private func newCategoryButtonClick(_ sender: UIBarButtonItem) {
+        let newCategoryVC = NewCategoryViewController(model: model)
+        newCategoryVC.modalPresentationStyle = .overCurrentContext
+        self.present(newCategoryVC, animated: true)
+    }
+    
     private func setupBarButtonItems() {
         let backButton = UIBarButtonItem(
             image: UIImage(systemName: "arrowshape.backward.circle.fill"),
@@ -87,7 +94,15 @@ class TaskCalendarVC: UIViewController {
             action: #selector(backButtonClick(_:))
         )
         
+        let newCategoryButton = UIBarButtonItem(
+            image: UIImage(systemName: "folder.fill.badge.plus"),
+            style: .plain,
+            target: self,
+            action: #selector(newCategoryButtonClick(_:))
+        )
+        
         navigationItem.leftBarButtonItems = [backButton]
+        navigationItem.rightBarButtonItems = [newCategoryButton]
     }
     
     private func setupAllSubviews() {
@@ -283,7 +298,7 @@ extension TaskCalendarVC: UITableViewDataSource {
         
         if let task = model.groupedTasksByDeadline[date]?[indexPath.row] {
             cell.titleLabel.text = task.text
-            cell.categoryView.backgroundColor = UIColor(task.category)
+            cell.categoryView.backgroundColor = task.category.color
             
             let count = model.groupedTasksByDeadline[date]!.count
             

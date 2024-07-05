@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0502FFA62C37B3BA007AD2AD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502FFA52C37B3BA007AD2AD /* TaskTableViewCell.swift */; };
+		0502FFAA2C3807E1007AD2AD /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502FFA92C3807E1007AD2AD /* TaskCategory.swift */; };
+		0502FFAC2C382970007AD2AD /* NewCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502FFAB2C382970007AD2AD /* NewCategoryVC.swift */; };
 		0545BDE22C2F1761009B4A68 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE12C2F1761009B4A68 /* CustomColor.swift */; };
 		0545BDE42C2F1A29009B4A68 /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */; };
 		0545BDE62C2F1B8F009B4A68 /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */; };
@@ -47,6 +49,8 @@
 
 /* Begin PBXFileReference section */
 		0502FFA52C37B3BA007AD2AD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		0502FFA92C3807E1007AD2AD /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
+		0502FFAB2C382970007AD2AD /* NewCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryVC.swift; sourceTree = "<group>"; };
 		0545BDE12C2F1761009B4A68 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
 		0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				05C66DA92C25B02800033CB5 /* ToDoListApp.swift */,
 				05C66DAB2C25B02800033CB5 /* MainView.swift */,
 				0545C9042C34EBC000514C9C /* TaskCalendarVC.swift */,
+				0502FFAB2C382970007AD2AD /* NewCategoryVC.swift */,
+				0502FFA92C3807E1007AD2AD /* TaskCategory.swift */,
 				05F3CDE92C36823300D33A78 /* DateCollectionViewCell.swift */,
 				0502FFA52C37B3BA007AD2AD /* TaskTableViewCell.swift */,
 				0545C9062C34FF8A00514C9C /* TaskCalendarVCRepresentable.swift */,
@@ -305,8 +311,10 @@
 				0545BDEA2C2F1FA7009B4A68 /* DetailsView.swift in Sources */,
 				0502FFA62C37B3BA007AD2AD /* TaskTableViewCell.swift in Sources */,
 				0545C9052C34EBC000514C9C /* TaskCalendarVC.swift in Sources */,
+				0502FFAA2C3807E1007AD2AD /* TaskCategory.swift in Sources */,
 				0545BDE62C2F1B8F009B4A68 /* DateFunctions.swift in Sources */,
 				05C66DD42C25B1CE00033CB5 /* ToDoItem.swift in Sources */,
+				0502FFAC2C382970007AD2AD /* NewCategoryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
