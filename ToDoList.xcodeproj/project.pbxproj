@@ -99,6 +99,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0502FFAD2C385EF9007AD2AD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				05C66DA92C25B02800033CB5 /* ToDoListApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0502FFAE2C385F11007AD2AD /* SwiftUIViews */ = {
+			isa = PBXGroup;
+			children = (
+				05C66DAB2C25B02800033CB5 /* MainView.swift */,
+				0545BDE92C2F1FA7009B4A68 /* DetailsView.swift */,
+			);
+			path = SwiftUIViews;
+			sourceTree = "<group>";
+		};
+		0502FFAF2C385F52007AD2AD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0545C9042C34EBC000514C9C /* TaskCalendarVC.swift */,
+				0545C9062C34FF8A00514C9C /* TaskCalendarVCRepresentable.swift */,
+				0502FFAB2C382970007AD2AD /* NewCategoryVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0502FFB02C385F81007AD2AD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				05F3CDE92C36823300D33A78 /* DateCollectionViewCell.swift */,
+				0502FFA52C37B3BA007AD2AD /* TaskTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0502FFB12C3861A1007AD2AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */,
+				0502FFA92C3807E1007AD2AD /* TaskCategory.swift */,
+				05C66DD32C25B1CE00033CB5 /* ToDoItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0502FFB22C3861BA007AD2AD /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				058C240C2C25DB5900E31028 /* FileCache.swift */,
+			);
+			path = DataStorage;
+			sourceTree = "<group>";
+		};
+		0502FFB32C3861E7007AD2AD /* ExtensionsAndAuxiliary */ = {
+			isa = PBXGroup;
+			children = (
+				0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */,
+				0545BDE12C2F1761009B4A68 /* CustomColor.swift */,
+			);
+			path = ExtensionsAndAuxiliary;
+			sourceTree = "<group>";
+		};
 		05C66D9D2C25B02800033CB5 = {
 			isa = PBXGroup;
 			children = (
@@ -122,20 +185,13 @@
 		05C66DA82C25B02800033CB5 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				05C66DA92C25B02800033CB5 /* ToDoListApp.swift */,
-				05C66DAB2C25B02800033CB5 /* MainView.swift */,
-				0545C9042C34EBC000514C9C /* TaskCalendarVC.swift */,
-				0502FFAB2C382970007AD2AD /* NewCategoryVC.swift */,
-				0502FFA92C3807E1007AD2AD /* TaskCategory.swift */,
-				05F3CDE92C36823300D33A78 /* DateCollectionViewCell.swift */,
-				0502FFA52C37B3BA007AD2AD /* TaskTableViewCell.swift */,
-				0545C9062C34FF8A00514C9C /* TaskCalendarVCRepresentable.swift */,
-				0545BDE92C2F1FA7009B4A68 /* DetailsView.swift */,
-				05C66DD32C25B1CE00033CB5 /* ToDoItem.swift */,
-				0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */,
-				0545BDE12C2F1761009B4A68 /* CustomColor.swift */,
-				0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */,
-				058C240C2C25DB5900E31028 /* FileCache.swift */,
+				0502FFAD2C385EF9007AD2AD /* App */,
+				0502FFAE2C385F11007AD2AD /* SwiftUIViews */,
+				0502FFAF2C385F52007AD2AD /* ViewControllers */,
+				0502FFB02C385F81007AD2AD /* Cells */,
+				0502FFB12C3861A1007AD2AD /* Models */,
+				0502FFB22C3861BA007AD2AD /* DataStorage */,
+				0502FFB32C3861E7007AD2AD /* ExtensionsAndAuxiliary */,
 				05C66DAD2C25B02900033CB5 /* Assets.xcassets */,
 				05C66DAF2C25B02900033CB5 /* Preview Content */,
 			);
