@@ -11,10 +11,24 @@ class TaskTableViewCell: UITableViewCell {
         return label
     }()
     
+    lazy var categoryView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        view.backgroundColor = .none
+        view.layer.cornerRadius = view.frame.size.width / 2
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.7
+        view.layer.shadowOffset = CGSize(width: 0, height: 3)
+        view.layer.shadowRadius = 2
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
-        setupTextConstraints()
+        contentView.addSubview(categoryView)
+        setupTitleLabelConstraints()
+        setupCategoryViewConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -59,10 +73,17 @@ class TaskTableViewCell: UITableViewCell {
         self.layer.mask = mask
     }
     
-    private func setupTextConstraints() {
+    private func setupTitleLabelConstraints() {
         titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: categoryView.leadingAnchor, constant: -20).isActive = true
+    }
+    
+    private func setupCategoryViewConstraints() {
+        categoryView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        categoryView.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        categoryView.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        categoryView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
 }
