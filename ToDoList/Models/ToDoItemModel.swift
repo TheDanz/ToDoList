@@ -161,7 +161,7 @@ final class ToDoItemModel: ObservableObject {
                 isDone: newIsDone ?? item.isDone,
                 modificationDate: Date(),
                 color: newColor ?? item.color,
-                categoty: newCategory ?? .defaultCategory()
+                categoty: newCategory ?? item.category
             )
             toDoItems[index] = item
         }
