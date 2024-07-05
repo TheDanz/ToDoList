@@ -10,9 +10,11 @@ struct DetailsView: View {
     @State var isDeadlineSelected = false
     @State var selectedDeadline: Date = (Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date())
     @State var selectedColor = Color(red: 0, green: 0, blue: 0)
+    @State var selectedCategory = TaskCategory.defaultCategory()
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.colorScheme) var colorScheme
+    var colorScheme: ColorScheme
     
+    var onDismiss: (() -> Void)?
     
     var body: some View {
         VStack(spacing: 16) {
@@ -32,13 +34,16 @@ struct DetailsView: View {
                             newText: inputText,
                             newImportance: selectedImportance,
                             newDeadline: isDeadlineSelected ? selectedDeadline : nil,
-                            newColor: selectedColor
+                            newColor: selectedColor,
+                            newCategory: selectedCategory
                         )
                     } else {
                         model.addItem(
                             text: inputText,
                             importance: selectedImportance,
-                            deadline: isDeadlineSelected ? selectedDeadline : nil
+                            deadline: isDeadlineSelected ? selectedDeadline : nil,
+                            color: selectedColor,
+                            category: selectedCategory
                         )
                     }
 
@@ -105,6 +110,25 @@ struct DetailsView: View {
                     }
                     
                     HStack {
+                        Menu {
+                            ForEach(model.categories, id: \.name) { category in
+                                Button {
+                                    selectedCategory = TaskCategory(name: category.name, color: category.color)
+                                } label: {
+                                    Text(category.name)
+                                }
+                            }
+                        } label: {
+                            Text("Выбрать категорию")
+                        }
+                        Spacer()
+                        Circle()
+                            .fill(Color(selectedCategory.color))
+                            .frame(width: 10, height: 10)
+                            .shadow(color: .black.opacity(0.7), radius: 2, x: 0, y: 3)
+                    }
+                    
+                    HStack {
                         VStack(alignment: .leading) {
                             Text("Сделать до")
                             if isDeadlineSelected {
@@ -112,7 +136,6 @@ struct DetailsView: View {
                                     .foregroundStyle(colorScheme == .dark ? CustomColor.colorDarkBlue : CustomColor.colorLightBlue)
                                     .font(.system(size: 15))
                                     .bold()
-    
                             }
                         }
                         Toggle(isOn: $isDeadlineSelected, label: {})
@@ -142,7 +165,11 @@ struct DetailsView: View {
             .background(colorScheme == .dark ? CustomColor.backDarkPrimary : CustomColor.backLightPrimary)
             .scrollContentBackground(.hidden)
         }
+        .environment(\.colorScheme, colorScheme)
         .padding()
         .background(colorScheme == .dark ? CustomColor.backDarkPrimary : CustomColor.backLightPrimary)
+        .onDisappear(perform: {
+            onDismiss?()
+        })
     }
 }

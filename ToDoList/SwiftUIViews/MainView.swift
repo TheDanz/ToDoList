@@ -7,6 +7,7 @@ struct MainView: View {
     @State private var showNewDetailsView = false
     @State private var showDatePicker = false
     @State private var showEditingDetailView = false
+    @State private var showTaskCalendarVC = false
     @State private var selectedDateToChange = Date()
     @State private var selectedItem: ToDoItem?
     @State private var areDoneTasksShown = true
@@ -148,6 +149,16 @@ struct MainView: View {
                 }
             }
             .navigationTitle("Мои дела")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showTaskCalendarVC = true
+                    } label: {
+                        Image(systemName: "calendar")
+                    }
+                }
+            }
+
             .background(colorScheme == .dark ? CustomColor.backDarkiOSPrimary : CustomColor.backLightPrimary)
             .scrollContentBackground(.hidden)
             .overlay(alignment: .bottom) {
@@ -166,7 +177,7 @@ struct MainView: View {
             }
         }
         .sheet(isPresented: $showNewDetailsView) {
-            DetailsView(model: model)
+            DetailsView(model: model, colorScheme: colorScheme)
         }
         .sheet(isPresented: $showEditingDetailView) {
             DetailsView(
@@ -177,8 +188,13 @@ struct MainView: View {
                 selectedImportance: selectedItem?.importance ?? .normal,
                 isDeadlineSelected: selectedItem?.deadline != nil ? true : false,
                 selectedDeadline: selectedItem?.deadline ?? Date(),
-                selectedColor: selectedItem?.color ?? .white
+                selectedColor: selectedItem?.color ?? .white,
+                selectedCategory: selectedItem?.category ?? .defaultCategory(),
+                colorScheme: colorScheme
             )
+        }
+        .fullScreenCover(isPresented: $showTaskCalendarVC) {
+            TaskCalendarVCRepresentable(model: model)
         }
         .fullScreenCover(isPresented: $showDatePicker) {
             VStack {

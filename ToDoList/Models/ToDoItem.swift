@@ -16,6 +16,7 @@ struct ToDoItem {
     let creationDate: Date
     let modificationDate: Date?
     let color: Color
+    let category: TaskCategory
     
     init(id: String = UUID().uuidString,
          text: String,
@@ -23,7 +24,8 @@ struct ToDoItem {
          deadline: Date? = nil,
          isDone: Bool = false,
          modificationDate: Date? = nil,
-         color: Color = .white
+         color: Color = .white,
+         categoty: TaskCategory = .defaultCategory()
     ) {
         self.id = id
         self.text = text
@@ -33,6 +35,7 @@ struct ToDoItem {
         self.creationDate = Date()
         self.modificationDate = modificationDate
         self.color = color
+        self.category = categoty
     }
 }
 
