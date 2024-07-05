@@ -267,6 +267,33 @@ extension TaskCalendarVC: UITableViewDelegate {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sortedDates = model.groupedTasksByDeadline.keys.sorted()
+        let currentDate = sortedDates[indexPath.section]
+        let selectedTask = model.groupedTasksByDeadline[currentDate]?[indexPath.row]
+        
+        let rootView = DetailsView(
+            model: model,
+            isEditing: true,
+            editingItemID: selectedTask?.id,
+            inputText: selectedTask?.text ?? "",
+            selectedImportance: selectedTask?.importance ?? .normal,
+            isDeadlineSelected: selectedTask?.deadline != nil ? true : false,
+            selectedDeadline: selectedTask?.deadline ?? Date(),
+            selectedColor: selectedTask?.color ?? .white,
+            selectedCategory: selectedTask?.category ?? .defaultCategory(),
+            onDismiss: {
+                DispatchQueue.main.async {
+                    self.dateCollectionView.reloadData()
+                    self.taskTableView.reloadData()
+                }
+            }
+        )
+        
+        let hostingController = UIHostingController(rootView: rootView)
+        self.present(hostingController, animated: true)
+    }
 }
 
 extension TaskCalendarVC: UITableViewDataSource {
