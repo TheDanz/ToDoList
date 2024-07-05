@@ -88,14 +88,14 @@ class TaskCalendarVC: UIViewController {
     
     private func setupBarButtonItems() {
         let backButton = UIBarButtonItem(
-            image: UIImage(systemName: "arrowshape.backward.circle.fill"),
+            image: UIImage(systemName: "arrow.left"),
             style: .plain,
             target: self,
             action: #selector(backButtonClick(_:))
         )
         
         let newCategoryButton = UIBarButtonItem(
-            image: UIImage(systemName: "folder.fill.badge.plus"),
+            image: UIImage(systemName: "folder.badge.plus"),
             style: .plain,
             target: self,
             action: #selector(newCategoryButtonClick(_:))
