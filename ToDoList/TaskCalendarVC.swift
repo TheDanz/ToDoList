@@ -297,9 +297,12 @@ extension TaskCalendarVC: UITableViewDataSource {
         let date = sortedDates[indexPath.section]
         
         if let task = model.groupedTasksByDeadline[date]?[indexPath.row] {
+            cell.titleLabel.attributedText = nil
+            cell.titleLabel.textColor = .black
+            
             cell.titleLabel.text = task.text
             cell.categoryView.backgroundColor = task.category.color
-            
+
             let count = model.groupedTasksByDeadline[date]!.count
             
             if count == 1 {

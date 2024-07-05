@@ -83,9 +83,11 @@ class NewCategoryViewController: UIViewController, UIColorPickerViewControllerDe
     }
     
     @objc func confirm() {
-        let name = textField.text ?? "No name"
-        let newCategory = TaskCategory(name: name, color: selectedColor)
-        model.categories.append(newCategory)
+        let name = textField.text ?? ""
+        if !name.isEmpty {
+            let newCategory = TaskCategory(name: name, color: selectedColor)
+            model.categories.append(newCategory)
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

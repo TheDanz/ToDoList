@@ -43,21 +43,21 @@ final class ToDoItemModel: ObservableObject {
         ),
         ToDoItem(
             id: "6",
-            text: "task 6\ntask 6\ntask 6",
+            text: "task 6",
             importance: .important,
             deadline: Calendar.current.date(byAdding: .day, value: 5, to: Date()),
             color: .blue
         ),
         ToDoItem(
             id: "7",
-            text: "task 7\ntask 7\ntask 7",
+            text: "task 7",
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 6, to: Date()),
             color: .red
         ),
         ToDoItem(
             id: "8",
-            text: "task 8\ntask 8\ntask 8",
+            text: "task 8",
             importance: .normal,
             deadline: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
             color: .green,
@@ -65,7 +65,7 @@ final class ToDoItemModel: ObservableObject {
         ),
         ToDoItem(
             id: "9",
-            text: "task 9\ntask 9\ntask 9",
+            text: "task 9",
             importance: .important,
             deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
             color: .brown,
@@ -73,7 +73,7 @@ final class ToDoItemModel: ObservableObject {
         ),
         ToDoItem(
             id: "10",
-            text: "task 10\ntask 10\ntask 10",
+            text: "task 10",
             importance: .unimportant,
             deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
             color: .orange,
@@ -81,14 +81,14 @@ final class ToDoItemModel: ObservableObject {
         ),
         ToDoItem(
             id: "11",
-            text: "task 11\ntask 11\ntask 11",
+            text: "task 11",
             importance: .normal,
             color: .yellow,
             categoty: TaskCategory(name: "Учеба", color: .blue)
         ),
         ToDoItem(
             id: "12",
-            text: "task 12\ntask 12\ntask 12",
+            text: "task 12",
             importance: .important,
             deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
             color: .blue,
