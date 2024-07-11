@@ -1,4 +1,5 @@
 import UIKit
+import TaskCategory
 
 class NewCategoryViewController: UIViewController, UIColorPickerViewControllerDelegate {
     

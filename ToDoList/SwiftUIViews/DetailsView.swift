@@ -1,6 +1,7 @@
 import SwiftUI
 import Foundation
 import CocoaLumberjackSwift
+import TaskCategory
 
 struct DetailsView: View {
     @ObservedObject var model: ToDoItemModel
