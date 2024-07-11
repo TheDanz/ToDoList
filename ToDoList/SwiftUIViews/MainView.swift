@@ -179,17 +179,17 @@ struct MainView: View {
         .sheet(isPresented: $showNewDetailsView) {
             DetailsView(model: model, colorScheme: colorScheme)
         }
-        .sheet(isPresented: $showEditingDetailView) {
+        .sheet(item: $selectedItem) { toDoItem in
             DetailsView(
                 model: model,
                 isEditing: true,
-                editingItemID: selectedItem?.id,
-                inputText: selectedItem?.text ?? "",
-                selectedImportance: selectedItem?.importance ?? .normal,
-                isDeadlineSelected: selectedItem?.deadline != nil ? true : false,
-                selectedDeadline: selectedItem?.deadline ?? Date(),
-                selectedColor: selectedItem?.color ?? .white,
-                selectedCategory: selectedItem?.category ?? .defaultCategory(),
+                editingItemID: toDoItem.id,
+                inputText: toDoItem.text,
+                selectedImportance: toDoItem.importance,
+                isDeadlineSelected: toDoItem.deadline != nil ? true : false,
+                selectedDeadline: toDoItem.deadline ?? Date(),
+                selectedColor: toDoItem.color,
+                selectedCategory: toDoItem.category,
                 colorScheme: colorScheme
             )
         }

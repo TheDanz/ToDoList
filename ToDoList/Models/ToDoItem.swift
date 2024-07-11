@@ -1,7 +1,7 @@
 import SwiftUI
 import Foundation
 
-struct ToDoItem {
+struct ToDoItem: Identifiable {
     enum Importance: String {
         case important = "important"
         case normal = "normal"
