@@ -1,4 +1,5 @@
 import SwiftUI
+import CocoaLumberjackSwift
 
 struct MainView: View {
     
@@ -24,6 +25,7 @@ struct MainView: View {
                                     .frame(width: 24, height: 24)
                                     .foregroundStyle(currentItem.isDone ? (colorScheme == .dark ? CustomColor.colorDarkGreen : CustomColor.colorLightGreen) : (currentItem.importance == .important ? (colorScheme == .dark ? CustomColor.colorDarkRed : CustomColor.colorLightRed) : (colorScheme == .dark ? CustomColor.supportDarkSeparator : CustomColor.supportLightSeparator)))
                                     .onTapGesture {
+                                        DDLogVerbose("\(Date()): У задачи \(currentItem.id) изменено свойство isDone на \(!currentItem.isDone)")
                                         model.updateToDoItem(id: currentItem.id, newIsDone: !currentItem.isDone, newColor: currentItem.color)
                                     }
                                 VStack(alignment: .leading, spacing: 3) {
@@ -74,6 +76,7 @@ struct MainView: View {
                             }
                             .swipeActions(edge: .leading) {
                                 Button {
+                                    DDLogVerbose("\(Date()): У задачи \(currentItem.id) изменено свойство isDone на \(!currentItem.isDone)")
                                     model.updateToDoItem(id: currentItem.id, newIsDone: !currentItem.isDone, newColor: currentItem.color)
                                 } label: {
                                     Image(systemName: "checkmark.circle.fill")
@@ -82,6 +85,7 @@ struct MainView: View {
                             }
                             .swipeActions(edge: .trailing) {
                                 Button {
+                                    DDLogVerbose("\(Date()): Задача \(currentItem.id) удалена")
                                     model.deleteItem(id: currentItem.id)
                                 } label: {
                                     Image(systemName: "trash")
@@ -89,6 +93,7 @@ struct MainView: View {
                                 .tint(colorScheme == .dark ? CustomColor.colorDarkRed : CustomColor.colorLightRed)
                                 
                                 Button {
+                                    DDLogVerbose("\(Date()): Начало редактирования задачи \(currentItem.id)")
                                     selectedItem = currentItem
                                     showEditingDetailView = true
                                 } label: {
@@ -110,6 +115,7 @@ struct MainView: View {
                             Text("Новое")
                                 .foregroundStyle(colorScheme == .dark ? CustomColor.labelDarkTertiary : CustomColor.labelLightTertiary)
                                 .onTapGesture {
+                                    DDLogVerbose("\(Date()): Нажата кнопка создания новой задачи внизу списка")
                                     showNewDetailsView = true
                                 }
                         }
@@ -123,6 +129,7 @@ struct MainView: View {
                         Menu {
                             Section("Выполненные") {
                                 Button(action: {
+                                    DDLogVerbose("\(Date()): Нажат переключатель Скрыть/Показать")
                                     areDoneTasksShown.toggle()
                                 })  {
                                     Text(areDoneTasksShown ? "Скрыть" : "Показать")
@@ -130,11 +137,13 @@ struct MainView: View {
                             }
                             Section("Сортировка") {
                                 Button(action: {
+                                    DDLogVerbose("\(Date()): Включена сортировка по дате создания")
                                     model.sort(by: .creationDate)
                                 })  {
                                     Text("По добавлению")
                                 }
                                 Button(action: {
+                                    DDLogVerbose("\(Date()): Включена сортировка по важности")
                                     model.sort(by: .importance)
                                 })  {
                                     Text("По важности")
@@ -152,6 +161,7 @@ struct MainView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
+                        DDLogVerbose("\(Date()): Переход на экран с календарем")
                         showTaskCalendarVC = true
                     } label: {
                         Image(systemName: "calendar")
@@ -163,6 +173,7 @@ struct MainView: View {
             .scrollContentBackground(.hidden)
             .overlay(alignment: .bottom) {
                 Button {
+                    DDLogVerbose("\(Date()): Создание новой задачи по кнопке плюс")
                     showNewDetailsView = true
                 } label: {
                     Image(systemName: "plus.circle.fill")
