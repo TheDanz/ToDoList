@@ -3,9 +3,9 @@ import Foundation
 
 struct ToDoItem: Identifiable {
     enum Importance: String {
-        case important = "important"
-        case normal = "normal"
-        case unimportant = "unimportant"
+        case important
+        case normal
+        case unimportant
     }
     
     let id: String
@@ -38,7 +38,6 @@ struct ToDoItem: Identifiable {
         self.category = categoty
     }
 }
-
 
 // MARK: ToDoItem - JSON
 extension ToDoItem {
@@ -89,7 +88,6 @@ extension ToDoItem {
         return toDoItem
     }
 }
-
 
 // MARK: ToDoItem - CSV
 extension ToDoItem {

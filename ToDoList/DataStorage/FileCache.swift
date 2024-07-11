@@ -13,10 +13,8 @@ class FileCache {
     }
     
     func remove(id: String) -> ToDoItem? {
-        for i in 0..<toDoItems.count {
-            if toDoItems[i].id == id {
-                return toDoItems.remove(at: i)
-            }
+        for i in 0..<toDoItems.count where toDoItems[i].id == id {
+            return toDoItems.remove(at: i)
         }
         return nil
     }

@@ -103,8 +103,8 @@ final class ToDoItemModel: ObservableObject {
         TaskCategory.defaultCategory()
     ]
     
-    var groupedTasksByDeadline: Dictionary<String, [ToDoItem]> {
-        var groupedTasks = Dictionary<String, [ToDoItem]>()
+    var groupedTasksByDeadline: [String: [ToDoItem]] {
+        var groupedTasks: [String: [ToDoItem]] = [:]
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMMM"

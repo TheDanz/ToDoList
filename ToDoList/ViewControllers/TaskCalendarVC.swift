@@ -160,7 +160,6 @@ class TaskCalendarVC: UIViewController {
     }
 }
 
-
 // MARK: Collection View
 extension TaskCalendarVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

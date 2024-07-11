@@ -67,7 +67,6 @@ struct DetailsView: View {
                                 .offset(x: -9)
                                 .frame(width: 5)
                                 .foregroundColor(selectedColor)
-
                             
                             if inputText.isEmpty {
                                 Text("Что надо сделать?")
