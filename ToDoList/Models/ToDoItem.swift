@@ -92,7 +92,7 @@ extension ToDoItem {
 
 // MARK: ToDoItem - CSV
 extension ToDoItem {
-    static var csvSeparator = ";"
+    static let csvSeparator = ";"
     
     var csv: String {
         
