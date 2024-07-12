@@ -1,5 +1,7 @@
 import SwiftUI
 import Foundation
+import CocoaLumberjackSwift
+import TaskCategory
 
 struct DetailsView: View {
     @ObservedObject var model: ToDoItemModel
@@ -20,6 +22,7 @@ struct DetailsView: View {
         VStack(spacing: 16) {
             HStack {
                 Button("Отменить") {
+                    DDLogVerbose("\(Date()): Отмена редактирования/создания задачи")
                     dismiss()
                 }
                 Spacer()
@@ -27,7 +30,7 @@ struct DetailsView: View {
                     .bold()
                 Spacer()
                 Button("Сохранить") {
-                    
+                    DDLogVerbose("\(Date()): Сохранение задачи")
                     if isEditing {
                         model.updateToDoItem(
                             id: editingItemID!,
@@ -65,7 +68,6 @@ struct DetailsView: View {
                                 .offset(x: -9)
                                 .frame(width: 5)
                                 .foregroundColor(selectedColor)
-
                             
                             if inputText.isEmpty {
                                 Text("Что надо сделать?")
@@ -113,6 +115,7 @@ struct DetailsView: View {
                         Menu {
                             ForEach(model.categories, id: \.name) { category in
                                 Button {
+                                    DDLogVerbose("\(Date()): Для задачи \(editingItemID ?? "") выбрана категория \(category.name)")
                                     selectedCategory = TaskCategory(name: category.name, color: category.color)
                                 } label: {
                                     Text(category.name)
@@ -149,7 +152,7 @@ struct DetailsView: View {
                 
                 Section {
                     Button("Удалить") {
-                        
+                        DDLogVerbose("\(Date()): Удалена задача \(editingItemID ?? "")")
                         if isEditing {
                             model.deleteItem(id: editingItemID ?? "")
                         }

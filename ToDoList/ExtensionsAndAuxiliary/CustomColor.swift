@@ -26,7 +26,6 @@ final class CustomColor {
     static let colorDarkGrayLight = Color(red: 0.28, green: 0.28, blue: 0.29, opacity: 1)
 }
 
-
 extension Color {
     var toHex: String {
         guard let components = cgColor?.components else { return "" }

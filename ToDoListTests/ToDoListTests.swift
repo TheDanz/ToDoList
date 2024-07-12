@@ -9,7 +9,7 @@ final class ToDoListTests: XCTestCase {
     let jsonWithUnimportantImportance: [String: Any] = ["id": "4", "text": "text4", "importance": "unimportant", "isDone": true]
     let jsonWithDeadline: [String: Any] = ["id": "5", "text": "text5", "isDone": true, "deadline": "2024-06-20T08:14:14Z"]
     let jsonWithoutDeadline: [String: Any] = ["id": "6", "text": "text6", "isDone": true]
-    let jsonWithCompletedTask: [String: Any] = ["id": "7",  "text": "text7", "isDone": true]
+    let jsonWithCompletedTask: [String: Any] = ["id": "7", "text": "text7", "isDone": true]
     let jsonWithUncompletedTask: [String: Any] = ["id": "8", "text": "text8", "isDone": false]
     let jsonWithoutID: [String: Any] = ["text": "text9", "importance": "unimportant", "isDone": true]
     let jsonWithoutText: [String: Any] = ["importance": "unimportant", "isDone": true]
@@ -157,6 +157,19 @@ final class ToDoListTests: XCTestCase {
             XCTAssertEqual(expected, fileCache.toDoItems.count)
         } else {
             XCTFail("File csvFileWithHeaders.csv does not exists")
+        }
+    }
+    
+    func testAsyncDataTask() async {
+        let session = URLSession.shared
+        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        
+        do {
+            let (_, _) = try await session.data(for: urlRequest)
+        } catch {
+            XCTFail("Error: \(error)")
         }
     }
 }

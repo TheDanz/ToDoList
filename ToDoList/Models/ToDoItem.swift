@@ -1,11 +1,12 @@
 import SwiftUI
 import Foundation
+import TaskCategory
 
 struct ToDoItem: Identifiable {
     enum Importance: String {
-        case important = "important"
-        case normal = "normal"
-        case unimportant = "unimportant"
+        case important
+        case normal
+        case unimportant
     }
     
     let id: String
@@ -38,7 +39,6 @@ struct ToDoItem: Identifiable {
         self.category = categoty
     }
 }
-
 
 // MARK: ToDoItem - JSON
 extension ToDoItem {
@@ -90,10 +90,9 @@ extension ToDoItem {
     }
 }
 
-
 // MARK: ToDoItem - CSV
 extension ToDoItem {
-    static var csvSeparator = ";"
+    static let csvSeparator = ";"
     
     var csv: String {
         

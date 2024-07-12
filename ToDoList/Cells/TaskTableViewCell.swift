@@ -36,14 +36,6 @@ class TaskTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     func makeСornersRoundedAtTop() {
         let path = UIBezierPath(roundedRect: self.bounds,
                                 byRoundingCorners: [.topLeft, .topRight],
@@ -78,7 +70,6 @@ class TaskTableViewCell: UITableViewCell {
         layer.mask = nil
     }
 
-    
     private func setupTitleLabelConstraints() {
         titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
