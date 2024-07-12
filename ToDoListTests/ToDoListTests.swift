@@ -159,4 +159,17 @@ final class ToDoListTests: XCTestCase {
             XCTFail("File csvFileWithHeaders.csv does not exists")
         }
     }
+    
+    func testAsyncDataTask() async {
+        let session = URLSession.shared
+        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        
+        do {
+            let (_, _) = try await session.data(for: urlRequest)
+        } catch {
+            XCTFail("Error: \(error)")
+        }
+    }
 }
