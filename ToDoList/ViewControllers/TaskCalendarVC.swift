@@ -64,7 +64,7 @@ class TaskCalendarVC: UIViewController {
     @objc
     private func plusButtonClick(_ sender: UIButton) {
         
-        let rootView = DetailsView(model: model, colorScheme: traitCollection.userInterfaceStyle == .dark ? .dark : .light) {
+        let rootView = DetailsView(model: self.model, selectedItem: .constant(nil), colorScheme: traitCollection.userInterfaceStyle == .dark ? .dark : .light) {
             DispatchQueue.main.async {
                 self.dateCollectionView.reloadData()
                 self.taskTableView.reloadData()
@@ -276,15 +276,8 @@ extension TaskCalendarVC: UITableViewDelegate {
         let selectedTask = model.groupedTasksByDeadline[currentDate]?[indexPath.row]
         
         let rootView = DetailsView(
-            model: model,
-            isEditing: true,
-            editingItemID: selectedTask?.id,
-            inputText: selectedTask?.text ?? "",
-            selectedImportance: selectedTask?.importance ?? .normal,
-            isDeadlineSelected: selectedTask?.deadline != nil ? true : false,
-            selectedDeadline: selectedTask?.deadline ?? Date(),
-            selectedColor: selectedTask?.color ?? .white,
-            selectedCategory: selectedTask?.category ?? .defaultCategory(),
+            model: self.model,
+            selectedItem: .constant(selectedTask),
             colorScheme: traitCollection.userInterfaceStyle == .dark ? .dark : .light,
             onDismiss: {
                 DispatchQueue.main.async {
