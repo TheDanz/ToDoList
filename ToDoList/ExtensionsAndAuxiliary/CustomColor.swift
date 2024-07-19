@@ -25,16 +25,3 @@ final class CustomColor {
     static let colorDarkBlue = Color(red: 0.04, green: 0.52, blue: 1, opacity: 1)
     static let colorDarkGrayLight = Color(red: 0.28, green: 0.28, blue: 0.29, opacity: 1)
 }
-
-extension Color {
-    var toHex: String {
-        guard let components = cgColor?.components else { return "" }
-
-        let r = Float(components[0])
-        let g = Float(components[1])
-        let b = Float(components[2])
-        let hex = String(format: "#%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
-
-        return hex
-    }
-}
