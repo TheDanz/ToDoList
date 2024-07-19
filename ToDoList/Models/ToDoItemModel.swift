@@ -6,6 +6,7 @@ import CocoaLumberjackSwift
 @MainActor
 final class ToDoItemModel: ObservableObject {
     @Published var toDoItems: [ToDoItem] = []
+    @Published var isLoading = false
     private let defaultNetworkingService = DefaultNetworkingService()
     private var isDirty = false
     
@@ -17,8 +18,10 @@ final class ToDoItemModel: ObservableObject {
     
     func fetchToDoItems() async {
         do {
+            isLoading = true
             let items = try await defaultNetworkingService.fetchList()
             self.toDoItems = items
+            isLoading = false
         } catch {
             isDirty = true
             DDLogVerbose("\(Date()): Error fetching items: \(error.localizedDescription)")
@@ -42,11 +45,13 @@ final class ToDoItemModel: ObservableObject {
         toDoItems.append(newItem)
         Task(priority: .background) {
             do {
+                isLoading = true
                 if isDirty {
                     await fetchToDoItems()
                     isDirty = false
                 }
                 try await defaultNetworkingService.addElement(newItem)
+                isLoading = false
             } catch {
                 isDirty = true
                 DDLogVerbose("\(Date()): Error adding item: \(error.localizedDescription)")
@@ -58,11 +63,13 @@ final class ToDoItemModel: ObservableObject {
         toDoItems.removeAll { $0.id == id }
         Task(priority: .background) {
             do {
+                isLoading = true
                 if isDirty {
                     await fetchToDoItems()
                     isDirty = false
                 }
                 try await defaultNetworkingService.deleteElement(by: id)
+                isLoading = false
             } catch {
                 isDirty = true
                 DDLogVerbose("\(Date()): Error deleting item: \(error.localizedDescription)")
@@ -94,10 +101,12 @@ final class ToDoItemModel: ObservableObject {
             toDoItems[index] = item
             Task(priority: .background) { [item] in
                 do {
+                    isLoading = true
                     if isDirty {
                         await fetchToDoItems()
                     }
                     try await defaultNetworkingService.updateElement(item)
+                    isLoading = false
                 } catch {
                     isDirty = true
                     DDLogVerbose("\(Date()): Error updating item: \(error.localizedDescription)")
