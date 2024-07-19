@@ -2,11 +2,11 @@ import SwiftUI
 import Foundation
 import TaskCategory
 
-struct ToDoItem: Identifiable {
+struct ToDoItem: Identifiable, Sendable {
     enum Importance: String {
-        case important = "low"
+        case important = "important"
         case normal = "basic"
-        case unimportant = "important"
+        case unimportant = "low"
     }
     
     let id: String
@@ -77,9 +77,8 @@ extension ToDoItem {
         }
                 
         var deadline: Date?
-        if let unwrappedDeadline = dict["deadline"] as? String {
-            let formatter = ISO8601DateFormatter()
-            deadline = formatter.date(from: unwrappedDeadline)
+        if let unwrappedDeadline = dict["deadline"] as? Int {
+            deadline = Date(timeIntervalSince1970: TimeInterval(unwrappedDeadline))
         }
         
         var color: Color = .white

@@ -1,6 +1,6 @@
 import Foundation
 
-class DefaultNetworkingService: NetworkingService {
+final class DefaultNetworkingService: NetworkingService, Sendable {
     private static let httpStatusCodeSuccess = 200..<300
     private static let TOKEN = "Tilinion"
     
@@ -114,7 +114,31 @@ class DefaultNetworkingService: NetworkingService {
         revisionManager.updateRevision(from: serverResponse)
     }
     
-    func updateElement(_ item: ToDoItem) async throws { }
+    func updateElement(_ item: ToDoItem) async throws {
+        let url = try makeURL(withID: item.id)
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("Bearer \(Self.TOKEN)", forHTTPHeaderField: "Authorization")
+        let revisionManager = RevisionManager()
+        let currentRevision = String(revisionManager.currentRevision)
+        request.setValue(currentRevision, forHTTPHeaderField: "X-Last-Known-Revision")
+        let jsonData = try JSONSerialization.data(withJSONObject: ServerResponse(element: item).json)
+        request.httpBody = jsonData
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse else {
+            throw RequestError.unexpectedResponse(response)
+        }
+        
+        guard Self.httpStatusCodeSuccess.contains(response.statusCode) else {
+            throw RequestError.failedResponse(response)
+        }
+        
+        let serverResponseJSON = try JSONSerialization.jsonObject(with: data)
+        guard let serverResponse = ServerResponse.parse(json: serverResponseJSON) else { return }
+        revisionManager.updateRevision(from: serverResponse)
+    }
     
     func deleteElement(by id: String) async throws {
         let url = try makeURL(withID: id)
