@@ -23,6 +23,7 @@
 		058C240D2C25DB5900E31028 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C240C2C25DB5900E31028 /* FileCache.swift */; };
 		058C24112C26127600E31028 /* csvFileWithHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24102C26127600E31028 /* csvFileWithHeaders.csv */; };
 		058C24152C26151600E31028 /* csvFileWithoutHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */; };
+		05A453B82C4AD294004360FA /* RetryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A453B72C4AD294004360FA /* RetryManager.swift */; };
 		05AB71472C405CBD0081AE77 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 05AB71462C405CBD0081AE77 /* CocoaLumberjack */; };
 		05AB71492C405CBD0081AE77 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05AB71482C405CBD0081AE77 /* CocoaLumberjackSwift */; };
 		05AB714B2C405CBD0081AE77 /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = 05AB714A2C405CBD0081AE77 /* CocoaLumberjackSwiftLogBackend */; };
@@ -97,6 +98,7 @@
 		058C240C2C25DB5900E31028 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		058C24102C26127600E31028 /* csvFileWithHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithHeaders.csv; sourceTree = "<group>"; };
 		058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithoutHeaders.csv; sourceTree = "<group>"; };
+		05A453B72C4AD294004360FA /* RetryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryManager.swift; sourceTree = "<group>"; };
 		05C66DA62C25B02800033CB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C66DA92C25B02800033CB5 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		05C66DAB2C25B02800033CB5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				051C471B2C4922BF004F2757 /* DefaultNetworkingService.swift */,
 				051C471D2C4988D4004F2757 /* ServerResponse.swift */,
 				051C471F2C498D1F004F2757 /* RevisionManager.swift */,
+				05A453B72C4AD294004360FA /* RetryManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				05FA2A392C46AECB004FE517 /* CheckmarkButton.swift in Sources */,
 				051C471A2C4922A9004F2757 /* NetworkingService.swift in Sources */,
 				05FA2A3F2C46CAB3004FE517 /* DetailsHeaderView.swift in Sources */,
+				05A453B82C4AD294004360FA /* RetryManager.swift in Sources */,
 				05FA2A4B2C46D1C0004FE517 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

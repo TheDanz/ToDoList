@@ -10,12 +10,15 @@ final class ToDoItemModel: ObservableObject {
     private let defaultNetworkingService = DefaultNetworkingService()
     private var isDirty = false
     
+    let retryManager = RetryManager(retryConfig: RetryConfig(minDelay: 2.0, maxDelay: 120.0, factor: 1.5, jitter: 0.05))
+    
     init() {
         Task(priority: .background) {
             await fetchToDoItems()
         }
     }
     
+    @Sendable
     func fetchToDoItems() async {
         do {
             isLoading = true
@@ -43,11 +46,12 @@ final class ToDoItemModel: ObservableObject {
             categoty: category
         )
         toDoItems.append(newItem)
+        
         Task(priority: .background) {
             do {
                 isLoading = true
                 if isDirty {
-                    await fetchToDoItems()
+                    try await retryManager.executeWithRetry(operation: fetchToDoItems)
                     isDirty = false
                 }
                 try await defaultNetworkingService.addElement(newItem)
@@ -65,7 +69,7 @@ final class ToDoItemModel: ObservableObject {
             do {
                 isLoading = true
                 if isDirty {
-                    await fetchToDoItems()
+                    try await retryManager.executeWithRetry(operation: fetchToDoItems)
                     isDirty = false
                 }
                 try await defaultNetworkingService.deleteElement(by: id)
@@ -99,11 +103,12 @@ final class ToDoItemModel: ObservableObject {
                 categoty: newCategory ?? item.category
             )
             toDoItems[index] = item
+            
             Task(priority: .background) { [item] in
                 do {
                     isLoading = true
                     if isDirty {
-                        await fetchToDoItems()
+                        try await retryManager.executeWithRetry(operation: fetchToDoItems)
                     }
                     try await defaultNetworkingService.updateElement(item)
                     isLoading = false
