@@ -24,6 +24,13 @@ struct MainView: View {
             .scrollContentBackground(.hidden)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
+                    if model.isLoading {
+                        ProgressView()
+                    } else {
+                        ProgressView().hidden()
+                    }
+                }
+                ToolbarItem(placement: .primaryAction) {
                     CalendarTransitionButton(showTaskCalendarVC: $showTaskCalendarVC)
                 }
             }

@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0502FFA62C37B3BA007AD2AD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502FFA52C37B3BA007AD2AD /* TaskTableViewCell.swift */; };
 		0502FFAC2C382970007AD2AD /* NewCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0502FFAB2C382970007AD2AD /* NewCategoryVC.swift */; };
+		051C471A2C4922A9004F2757 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C47192C4922A9004F2757 /* NetworkingService.swift */; };
+		051C471C2C4922BF004F2757 /* DefaultNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C471B2C4922BF004F2757 /* DefaultNetworkingService.swift */; };
+		051C471E2C4988D4004F2757 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C471D2C4988D4004F2757 /* ServerResponse.swift */; };
+		051C47202C498D1F004F2757 /* RevisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C471F2C498D1F004F2757 /* RevisionManager.swift */; };
+		051C47222C4A69CE004F2757 /* Color+ToHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C47212C4A69CE004F2757 /* Color+ToHex.swift */; };
 		0545BDE22C2F1761009B4A68 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE12C2F1761009B4A68 /* CustomColor.swift */; };
 		0545BDE42C2F1A29009B4A68 /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */; };
 		0545BDE62C2F1B8F009B4A68 /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */; };
@@ -18,6 +23,7 @@
 		058C240D2C25DB5900E31028 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058C240C2C25DB5900E31028 /* FileCache.swift */; };
 		058C24112C26127600E31028 /* csvFileWithHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24102C26127600E31028 /* csvFileWithHeaders.csv */; };
 		058C24152C26151600E31028 /* csvFileWithoutHeaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */; };
+		05A453B82C4AD294004360FA /* RetryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A453B72C4AD294004360FA /* RetryManager.swift */; };
 		05AB71472C405CBD0081AE77 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 05AB71462C405CBD0081AE77 /* CocoaLumberjack */; };
 		05AB71492C405CBD0081AE77 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05AB71482C405CBD0081AE77 /* CocoaLumberjackSwift */; };
 		05AB714B2C405CBD0081AE77 /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = 05AB714A2C405CBD0081AE77 /* CocoaLumberjackSwiftLogBackend */; };
@@ -77,6 +83,11 @@
 		0125CBB099D653CAA9911231 /* Pods-ToDoListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoListTests.release.xcconfig"; path = "Target Support Files/Pods-ToDoListTests/Pods-ToDoListTests.release.xcconfig"; sourceTree = "<group>"; };
 		0502FFA52C37B3BA007AD2AD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		0502FFAB2C382970007AD2AD /* NewCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryVC.swift; sourceTree = "<group>"; };
+		051C47192C4922A9004F2757 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		051C471B2C4922BF004F2757 /* DefaultNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkingService.swift; sourceTree = "<group>"; };
+		051C471D2C4988D4004F2757 /* ServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
+		051C471F2C498D1F004F2757 /* RevisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisionManager.swift; sourceTree = "<group>"; };
+		051C47212C4A69CE004F2757 /* Color+ToHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ToHex.swift"; sourceTree = "<group>"; };
 		0545BDE12C2F1761009B4A68 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
 		0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
@@ -87,6 +98,7 @@
 		058C240C2C25DB5900E31028 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		058C24102C26127600E31028 /* csvFileWithHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithHeaders.csv; sourceTree = "<group>"; };
 		058C24142C26151600E31028 /* csvFileWithoutHeaders.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = csvFileWithoutHeaders.csv; sourceTree = "<group>"; };
+		05A453B72C4AD294004360FA /* RetryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryManager.swift; sourceTree = "<group>"; };
 		05C66DA62C25B02800033CB5 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C66DA92C25B02800033CB5 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		05C66DAB2C25B02800033CB5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -220,8 +232,21 @@
 				0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */,
 				0545BDE12C2F1761009B4A68 /* CustomColor.swift */,
 				05EC077A2C415194004F72BC /* URLSession.swift */,
+				051C47212C4A69CE004F2757 /* Color+ToHex.swift */,
 			);
 			path = ExtensionsAndAuxiliary;
+			sourceTree = "<group>";
+		};
+		051C47182C492295004F2757 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				051C47192C4922A9004F2757 /* NetworkingService.swift */,
+				051C471B2C4922BF004F2757 /* DefaultNetworkingService.swift */,
+				051C471D2C4988D4004F2757 /* ServerResponse.swift */,
+				051C471F2C498D1F004F2757 /* RevisionManager.swift */,
+				05A453B72C4AD294004360FA /* RetryManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		05C66D9D2C25B02800033CB5 = {
@@ -256,6 +281,7 @@
 				0502FFB02C385F81007AD2AD /* Cells */,
 				0502FFB12C3861A1007AD2AD /* Models */,
 				0502FFB22C3861BA007AD2AD /* DataStorage */,
+				051C47182C492295004F2757 /* Networking */,
 				0502FFB32C3861E7007AD2AD /* ExtensionsAndAuxiliary */,
 				05C66DAD2C25B02900033CB5 /* Assets.xcassets */,
 				05C66DAF2C25B02900033CB5 /* Preview Content */,
@@ -402,8 +428,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05C66DCA2C25B02900033CB5 /* Build configuration list for PBXNativeTarget "ToDoList" */;
 			buildPhases = (
-				0582D0B42C40767C0033887C /* ShellScript */,
 				99C17ACB1C4D68EC5ED34899 /* [CP] Check Pods Manifest.lock */,
+				0582D0B42C40767C0033887C /* ShellScript */,
 				05C66DA22C25B02800033CB5 /* Sources */,
 				05C66DA32C25B02800033CB5 /* Frameworks */,
 				05C66DA42C25B02800033CB5 /* Resources */,
@@ -632,6 +658,7 @@
 				0545BDE42C2F1A29009B4A68 /* ToDoItemModel.swift in Sources */,
 				05F3CDEA2C36823300D33A78 /* DateCollectionViewCell.swift in Sources */,
 				05EC077B2C415194004F72BC /* URLSession.swift in Sources */,
+				051C471E2C4988D4004F2757 /* ServerResponse.swift in Sources */,
 				05FA2A452C46D02B004FE517 /* OptionalAttributesSection.swift in Sources */,
 				05FA2A292C4674A6004FE517 /* ItemCellView.swift in Sources */,
 				05C66DAC2C25B02800033CB5 /* MainView.swift in Sources */,
@@ -641,11 +668,13 @@
 				058C240D2C25DB5900E31028 /* FileCache.swift in Sources */,
 				05FA2A3D2C46B0A9004FE517 /* InfoButton.swift in Sources */,
 				05FA2A312C469CA6004FE517 /* CalendarTransitionButton.swift in Sources */,
+				051C47202C498D1F004F2757 /* RevisionManager.swift in Sources */,
 				05FA2A372C46A3E2004FE517 /* PlusButton.swift in Sources */,
 				05FA2A722C470093004FE517 /* TaskListHeader.swift in Sources */,
 				0545C9072C34FF8A00514C9C /* TaskCalendarVCRepresentable.swift in Sources */,
 				0545BDE22C2F1761009B4A68 /* CustomColor.swift in Sources */,
 				0545BDEA2C2F1FA7009B4A68 /* DetailsView.swift in Sources */,
+				051C47222C4A69CE004F2757 /* Color+ToHex.swift in Sources */,
 				0502FFA62C37B3BA007AD2AD /* TaskTableViewCell.swift in Sources */,
 				0545C9052C34EBC000514C9C /* TaskCalendarVC.swift in Sources */,
 				05FA2A432C46CFC2004FE517 /* TextEditorSection.swift in Sources */,
@@ -657,8 +686,11 @@
 				05C66DD42C25B1CE00033CB5 /* ToDoItem.swift in Sources */,
 				0502FFAC2C382970007AD2AD /* NewCategoryVC.swift in Sources */,
 				05FA2A472C46D08B004FE517 /* ImportanceCell.swift in Sources */,
+				051C471C2C4922BF004F2757 /* DefaultNetworkingService.swift in Sources */,
 				05FA2A392C46AECB004FE517 /* CheckmarkButton.swift in Sources */,
+				051C471A2C4922A9004F2757 /* NetworkingService.swift in Sources */,
 				05FA2A3F2C46CAB3004FE517 /* DetailsHeaderView.swift in Sources */,
+				05A453B82C4AD294004360FA /* RetryManager.swift in Sources */,
 				05FA2A4B2C46D1C0004FE517 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

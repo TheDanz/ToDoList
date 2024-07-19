@@ -1,6 +1,6 @@
 import UIKit
 
-public struct TaskCategory {
+public struct TaskCategory: Sendable {
     public var name: String
     public var color: UIColor
     

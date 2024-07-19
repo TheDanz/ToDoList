@@ -2,11 +2,11 @@ import SwiftUI
 import Foundation
 import TaskCategory
 
-struct ToDoItem: Identifiable {
+struct ToDoItem: Identifiable, Sendable {
     enum Importance: String {
-        case important
-        case normal
-        case unimportant
+        case important = "important"
+        case normal = "basic"
+        case unimportant = "low"
     }
     
     let id: String
@@ -47,16 +47,18 @@ extension ToDoItem {
         var dict: [String: Any] = [
             "id": id,
             "text": text,
-            "isDone": isDone
+            "done": isDone
         ]
         
-        if importance != .normal {
-            dict["importance"] = importance.rawValue
+        if let deadline = deadline {
+            dict["deadline"] = Int(deadline.timeIntervalSince1970)
         }
         
-        if let deadline = deadline {
-            dict["deadline"] = deadline.ISO8601Format()
-        }
+        dict["importance"] = importance.rawValue
+        dict["color"] = color.toHex
+        dict["created_at"] = Int(creationDate.timeIntervalSince1970)
+        dict["changed_at"] = Int(modificationDate?.timeIntervalSince1970 ?? Date().timeIntervalSince1970)
+        dict["last_updated_by"] = "me"
         
         return dict
     }
@@ -66,7 +68,7 @@ extension ToDoItem {
         guard let dict = json as? [String: Any],
               let id = dict["id"] as? String,
               let text = dict["text"] as? String,
-              let isDone = dict["isDone"] as? Bool
+              let isDone = dict["done"] as? Bool
         else { return nil }
         
         var importance: Importance?
@@ -75,17 +77,31 @@ extension ToDoItem {
         }
                 
         var deadline: Date?
-        if let unwrappedDeadline = dict["deadline"] as? String {
-            let formatter = ISO8601DateFormatter()
-            deadline = formatter.date(from: unwrappedDeadline)
+        if let unwrappedDeadline = dict["deadline"] as? Int {
+            deadline = Date(timeIntervalSince1970: TimeInterval(unwrappedDeadline))
         }
         
-        let toDoItem = ToDoItem(id: id,
-                                text: text,
-                                importance: importance ?? .normal,
-                                deadline: deadline,
-                                isDone: isDone
+        var color: Color = .white
+        if let unwrappedColor = dict["color"] as? String {
+            color = Color(hex: unwrappedColor)
+        }
+        
+        var modificationDate: Date?
+        if let unwrappedModificationDate = dict["changed_at"] as? Int {
+            modificationDate = Date(timeIntervalSince1970: TimeInterval(unwrappedModificationDate))
+        }
+        
+        let toDoItem = ToDoItem(
+            id: id,
+            text: text,
+            importance: importance ?? .normal,
+            deadline: deadline,
+            isDone: isDone,
+            modificationDate: modificationDate,
+            color: color,
+            categoty: .defaultCategory()
         )
+        
         return toDoItem
     }
 }

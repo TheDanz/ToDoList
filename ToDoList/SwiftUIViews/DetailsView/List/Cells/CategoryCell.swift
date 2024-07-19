@@ -12,7 +12,7 @@ struct CategoryCell: View {
             Menu {
                 ForEach(model.categories, id: \.name) { category in
                     Button {
-                        DDLogVerbose("\(Date()): Для задачи \(selectedItem?.id) выбрана категория \(category.name)")
+                        DDLogVerbose("\(Date()): Для задачи \(selectedItem?.id ?? "") выбрана категория \(category.name)")
                         selectedCategory = TaskCategory(name: category.name, color: category.color)
                     } label: {
                         Text(category.name)

@@ -1,125 +1,34 @@
 import SwiftUI
 import TaskCategory
 import Foundation
+import CocoaLumberjackSwift
 
+@MainActor
 final class ToDoItemModel: ObservableObject {
-    @Published var toDoItems: [ToDoItem] = [
-        ToDoItem(
-            id: "1",
-            text: "task 1",
-            importance: .unimportant,
-            deadline: Calendar.current.date(byAdding: .day, value: 1, to: Date()),
-            color: .red,
-            categoty: TaskCategory(name: "Работа", color: .red)
-        ),
-        ToDoItem(
-            id: "2",
-            text: "task 2",
-            importance: .normal,
-            deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
-            color: .green,
-            categoty: TaskCategory(name: "Хобби", color: .green)
-        ),
-        ToDoItem(
-            id: "3",
-            text: "task 3",
-            importance: .important,
-            deadline: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
-            color: .brown
-        ),
-        ToDoItem(
-            id: "4",
-            text: "task 4",
-            importance: .unimportant,
-            deadline: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
-            color: .orange,
-            categoty: TaskCategory(name: "Работа", color: .red)
-        ),
-        ToDoItem(
-            id: "5",
-            text: "task 5",
-            importance: .normal,
-            color: .yellow,
-            categoty: TaskCategory(name: "Учеба", color: .blue)
-        ),
-        ToDoItem(
-            id: "6",
-            text: "task 6",
-            importance: .important,
-            deadline: Calendar.current.date(byAdding: .day, value: 3, to: Date()),
-            color: .blue
-        ),
-        ToDoItem(
-            id: "7",
-            text: "task 7",
-            importance: .unimportant,
-            deadline: Calendar.current.date(byAdding: .day, value: 6, to: Date()),
-            color: .red
-        ),
-        ToDoItem(
-            id: "8",
-            text: "task 8",
-            importance: .normal,
-            deadline: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
-            color: .green,
-            categoty: TaskCategory(name: "Работа", color: .red)
-        ),
-        ToDoItem(
-            id: "9",
-            text: "task 9",
-            importance: .important,
-            deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
-            color: .brown,
-            categoty: TaskCategory(name: "Учеба", color: .blue)
-        ),
-        ToDoItem(
-            id: "10",
-            text: "task 10",
-            importance: .unimportant,
-            deadline: Calendar.current.date(byAdding: .day, value: 8, to: Date()),
-            color: .orange,
-            categoty: TaskCategory(name: "Работа", color: .red)
-        ),
-        ToDoItem(
-            id: "11",
-            text: "task 11",
-            importance: .normal,
-            color: .yellow,
-            categoty: TaskCategory(name: "Учеба", color: .blue)
-        ),
-        ToDoItem(
-            id: "12",
-            text: "task 12",
-            importance: .important,
-            deadline: Calendar.current.date(byAdding: .day, value: 2, to: Date()),
-            color: .blue,
-            categoty: TaskCategory(name: "Хобби", color: .green)
-        )
-    ]
+    @Published var toDoItems: [ToDoItem] = []
+    @Published var isLoading = false
+    private let defaultNetworkingService = DefaultNetworkingService()
+    private var isDirty = false
     
-    @Published var categories: [TaskCategory] = [
-        TaskCategory(name: "Работа", color: .red),
-        TaskCategory(name: "Учеба", color: .blue),
-        TaskCategory(name: "Хобби", color: .green),
-        TaskCategory.defaultCategory()
-    ]
+    let retryManager = RetryManager(retryConfig: RetryConfig(minDelay: 2.0, maxDelay: 120.0, factor: 1.5, jitter: 0.05))
     
-    var groupedTasksByDeadline: [String: [ToDoItem]] {
-        var groupedTasks: [String: [ToDoItem]] = [:]
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMMM"
-        
-        for item in toDoItems {
-            if let deadline = item.deadline {
-                let formattedDeadline = formatter.string(from: deadline)
-                groupedTasks[formattedDeadline, default: []].append(item)
-            } else {
-                groupedTasks["Другое", default: []].append(item)
-            }
+    init() {
+        Task(priority: .background) {
+            await fetchToDoItems()
         }
-        
-        return groupedTasks
+    }
+    
+    @Sendable
+    func fetchToDoItems() async {
+        do {
+            isLoading = true
+            let items = try await defaultNetworkingService.fetchList()
+            self.toDoItems = items
+            isLoading = false
+        } catch {
+            isDirty = true
+            DDLogVerbose("\(Date()): Error fetching items: \(error.localizedDescription)")
+        }
     }
     
     func addItem(
@@ -137,10 +46,39 @@ final class ToDoItemModel: ObservableObject {
             categoty: category
         )
         toDoItems.append(newItem)
+        
+        Task(priority: .background) {
+            do {
+                isLoading = true
+                if isDirty {
+                    try await retryManager.executeWithRetry(operation: fetchToDoItems)
+                    isDirty = false
+                }
+                try await defaultNetworkingService.addElement(newItem)
+                isLoading = false
+            } catch {
+                isDirty = true
+                DDLogVerbose("\(Date()): Error adding item: \(error.localizedDescription)")
+            }
+        }
     }
     
     func deleteItem(id: String) {
         toDoItems.removeAll { $0.id == id }
+        Task(priority: .background) {
+            do {
+                isLoading = true
+                if isDirty {
+                    try await retryManager.executeWithRetry(operation: fetchToDoItems)
+                    isDirty = false
+                }
+                try await defaultNetworkingService.deleteElement(by: id)
+                isLoading = false
+            } catch {
+                isDirty = true
+                DDLogVerbose("\(Date()): Error deleting item: \(error.localizedDescription)")
+            }
+        }
     }
     
     func updateToDoItem(
@@ -165,7 +103,46 @@ final class ToDoItemModel: ObservableObject {
                 categoty: newCategory ?? item.category
             )
             toDoItems[index] = item
+            
+            Task(priority: .background) { [item] in
+                do {
+                    isLoading = true
+                    if isDirty {
+                        try await retryManager.executeWithRetry(operation: fetchToDoItems)
+                    }
+                    try await defaultNetworkingService.updateElement(item)
+                    isLoading = false
+                } catch {
+                    isDirty = true
+                    DDLogVerbose("\(Date()): Error updating item: \(error.localizedDescription)")
+                }
+            }
         }
+    }
+    
+    @Published var categories: [TaskCategory] = [
+        TaskCategory(name: "Работа", color: .red),
+        TaskCategory(name: "Учеба", color: .blue),
+        TaskCategory(name: "Хобби", color: .green),
+        TaskCategory.defaultCategory()
+    ]
+    
+    var groupedTasksByDeadline: [String: [ToDoItem]] {
+        var groupedTasks: [String: [ToDoItem]] = [:]
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM"
+        
+        for item in toDoItems {
+            if let deadline = item.deadline {
+                let formattedDeadline = formatter.string(from: deadline)
+                groupedTasks[formattedDeadline, default: []].append(item)
+            } else {
+                groupedTasks["Другое", default: []].append(item)
+            }
+        }
+        
+        return groupedTasks
     }
     
     enum SortBy {

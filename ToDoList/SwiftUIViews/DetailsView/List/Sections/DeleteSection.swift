@@ -11,7 +11,7 @@ struct DeleteSection: View {
     var body: some View {
         Section {
             Button("Удалить") {
-                DDLogVerbose("\(Date()): Удалена задача \(selectedItem?.id)")
+                DDLogVerbose("\(Date()): Удалена задача \(selectedItem?.id ?? "")")
                 if let selectedItem = selectedItem {
                     model.deleteItem(id: selectedItem.id)
                 }
