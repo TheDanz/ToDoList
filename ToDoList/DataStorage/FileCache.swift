@@ -1,7 +1,18 @@
+import SQLite
+import SwiftData
 import Foundation
 
 class FileCache {
     private(set) var toDoItems: [ToDoItem] = []
+    var container: ModelContainer?
+    var sqlDatabase: Connection!
+    var dataStorageUsed = UserDefaults.standard.string(forKey: "storage_preference") ?? "SwiftData"
+
+    init() {
+        connectDatabase()
+        let fullSchema = Schema([ToDoItemDB.self])
+        self.container = try? ModelContainer(for: fullSchema)
+    }
     
     func append(item: ToDoItem) -> Bool {
         
