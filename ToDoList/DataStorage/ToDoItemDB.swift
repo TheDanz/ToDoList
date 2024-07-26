@@ -13,12 +13,13 @@ final class ToDoItemDB {
         id: String = UUID().uuidString,
         text: String,
         deadline: Date? = nil,
-        isDone: Bool = false
+        isDone: Bool = false,
+        creationDate: Date = Date()
     ) {
         self.id = id
         self.text = text
         self.deadline = deadline
         self.isDone = isDone
-        self.creationDate = Date()
+        self.creationDate = creationDate
     }
 }
