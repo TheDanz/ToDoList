@@ -18,6 +18,7 @@
 		0523FE682C53174900075EE8 /* ToDoItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523FE672C53174900075EE8 /* ToDoItemDB.swift */; };
 		0523FE6C2C5395AA00075EE8 /* FileCache+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523FE6B2C5395AA00075EE8 /* FileCache+SQLite.swift */; };
 		0523FE6F2C53960000075EE8 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0523FE6E2C53960000075EE8 /* SQLite */; };
+		0523FE712C53CE6600075EE8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0523FE702C53CE6600075EE8 /* Settings.bundle */; };
 		0545BDE22C2F1761009B4A68 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE12C2F1761009B4A68 /* CustomColor.swift */; };
 		0545BDE42C2F1A29009B4A68 /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */; };
 		0545BDE62C2F1B8F009B4A68 /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */; };
@@ -95,6 +96,7 @@
 		0523FE652C53144E00075EE8 /* FileCache+SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileCache+SwiftData.swift"; sourceTree = "<group>"; };
 		0523FE672C53174900075EE8 /* ToDoItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemDB.swift; sourceTree = "<group>"; };
 		0523FE6B2C5395AA00075EE8 /* FileCache+SQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileCache+SQLite.swift"; sourceTree = "<group>"; };
+		0523FE702C53CE6600075EE8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0545BDE12C2F1761009B4A68 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
 		0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		05C66D9D2C25B02800033CB5 = {
 			isa = PBXGroup;
 			children = (
+				0523FE702C53CE6600075EE8 /* Settings.bundle */,
 				05EC07742C40964E004F72BC /* TaskCategory */,
 				05C66DA82C25B02800033CB5 /* ToDoList */,
 				05C66DB92C25B02900033CB5 /* ToDoListTests */,
@@ -554,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C66DB12C25B02900033CB5 /* Preview Assets.xcassets in Resources */,
+				0523FE712C53CE6600075EE8 /* Settings.bundle in Resources */,
 				05C66DAE2C25B02900033CB5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
