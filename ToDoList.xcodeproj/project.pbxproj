@@ -14,6 +14,8 @@
 		051C471E2C4988D4004F2757 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C471D2C4988D4004F2757 /* ServerResponse.swift */; };
 		051C47202C498D1F004F2757 /* RevisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C471F2C498D1F004F2757 /* RevisionManager.swift */; };
 		051C47222C4A69CE004F2757 /* Color+ToHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C47212C4A69CE004F2757 /* Color+ToHex.swift */; };
+		0523FE662C53144E00075EE8 /* FileCache+SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523FE652C53144E00075EE8 /* FileCache+SwiftData.swift */; };
+		0523FE682C53174900075EE8 /* ToDoItemDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0523FE672C53174900075EE8 /* ToDoItemDB.swift */; };
 		0545BDE22C2F1761009B4A68 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE12C2F1761009B4A68 /* CustomColor.swift */; };
 		0545BDE42C2F1A29009B4A68 /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */; };
 		0545BDE62C2F1B8F009B4A68 /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */; };
@@ -88,6 +90,8 @@
 		051C471D2C4988D4004F2757 /* ServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		051C471F2C498D1F004F2757 /* RevisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevisionManager.swift; sourceTree = "<group>"; };
 		051C47212C4A69CE004F2757 /* Color+ToHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ToHex.swift"; sourceTree = "<group>"; };
+		0523FE652C53144E00075EE8 /* FileCache+SwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileCache+SwiftData.swift"; sourceTree = "<group>"; };
+		0523FE672C53174900075EE8 /* ToDoItemDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemDB.swift; sourceTree = "<group>"; };
 		0545BDE12C2F1761009B4A68 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		0545BDE32C2F1A29009B4A68 /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
 		0545BDE52C2F1B8F009B4A68 /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
@@ -221,7 +225,9 @@
 		0502FFB22C3861BA007AD2AD /* DataStorage */ = {
 			isa = PBXGroup;
 			children = (
+				0523FE672C53174900075EE8 /* ToDoItemDB.swift */,
 				058C240C2C25DB5900E31028 /* FileCache.swift */,
+				0523FE652C53144E00075EE8 /* FileCache+SwiftData.swift */,
 			);
 			path = DataStorage;
 			sourceTree = "<group>";
@@ -682,7 +688,9 @@
 				05FA2A4F2C46D40D004FE517 /* DeleteSection.swift in Sources */,
 				05FA2A512C46D819004FE517 /* DetailsViewList.swift in Sources */,
 				0545BDE62C2F1B8F009B4A68 /* DateFunctions.swift in Sources */,
+				0523FE662C53144E00075EE8 /* FileCache+SwiftData.swift in Sources */,
 				05FA2A4D2C46D2F4004FE517 /* DeadlineCell.swift in Sources */,
+				0523FE682C53174900075EE8 /* ToDoItemDB.swift in Sources */,
 				05C66DD42C25B1CE00033CB5 /* ToDoItem.swift in Sources */,
 				0502FFAC2C382970007AD2AD /* NewCategoryVC.swift in Sources */,
 				05FA2A472C46D08B004FE517 /* ImportanceCell.swift in Sources */,
