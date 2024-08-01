@@ -24,7 +24,7 @@ extension URLSession {
                 await withTaskCancellationHandler {
                     task.resume()
                 } onCancel: {
-                    // cancelled
+                    task.cancel()
                 }
             }
         }
